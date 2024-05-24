@@ -33,8 +33,17 @@ NS_ :
 
 BS_:
 
-BU_:
+BU_: CGW Steering Brake
+VAL_TABLE_ vtb_TrueFalse 1 "TRUE" 0 "FALSE" ;
 
+
+BO_ 768 msg_SteeringWheelInfo: 3 Steering
+ SG_ sig_SteeringWheelAngle : 8|11@1- (1,0) [-540|540] "degree"  CGW
+ SG_ sig_CRC : 0|8@1+ (1,0) [0|255] ""  CGW
+
+BO_ 0 msg_BrakePedalInfo: 2 Brake
+ SG_ sig_CRC : 0|8@1+ (1,0) [0|255] ""  CGW
+ SG_ sig_BrakePedalPress : 8|1@1+ (1,0) [0|0] ""  CGW
 
 
 
@@ -74,6 +83,11 @@ BA_DEF_DEF_  "GenMsgCycleTimeFast" 20;
 BA_DEF_DEF_  "GenMsgILSupport" "Yes";
 BA_DEF_DEF_  "GenMsgFastOnStart" 0;
 BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
-BA_ "BusType" "CAN";
 BA_ "DatabaseVersion" "1.1";
+BA_ "BusType" "CAN";
+BA_ "GenSigSendType" SG_ 768 sig_SteeringWheelAngle 7;
+BA_ "GenSigSendType" SG_ 768 sig_CRC 7;
+BA_ "GenSigSendType" SG_ 0 sig_CRC 7;
+BA_ "GenSigSendType" SG_ 0 sig_BrakePedalPress 7;
+VAL_ 0 sig_BrakePedalPress 1 "TRUE" 0 "FALSE" ;
 
