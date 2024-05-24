@@ -33,14 +33,8 @@ NS_ :
 
 BS_:
 
-BU_: C_Gateway Steering Brake
+BU_:
 
-
-BO_ 272 msg_SteeringInfo: 8 Steering
- SG_ sig_SteeringAngle : 0|11@1- (1,0) [-540|540] "degree"  C_Gateway
-
-BO_ 16 msg_BrakeInfo: 8 Brake
- SG_ sig_BrakePress : 0|1@1+ (1,0) [0|1] ""  C_Gateway
 
 
 
@@ -80,10 +74,6 @@ BA_DEF_DEF_  "GenMsgCycleTimeFast" 20;
 BA_DEF_DEF_  "GenMsgILSupport" "Yes";
 BA_DEF_DEF_  "GenMsgFastOnStart" 0;
 BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
-BA_ "DatabaseVersion" "1.1";
 BA_ "BusType" "CAN";
-BA_ "GenMsgSendType" BO_ 272 0;
-BA_ "GenMsgCycleTime" BO_ 272 20;
-BA_ "GenMsgSendType" BO_ 16 0;
-BA_ "GenMsgCycleTime" BO_ 16 10;
+BA_ "DatabaseVersion" "1.1";
 
