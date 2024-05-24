@@ -33,8 +33,20 @@ NS_ :
 
 BS_:
 
-BU_:
+BU_: BGW Lamp
 
+
+BO_ 1280 msg_SteeringInfo: 3 BGW
+ SG_ sig_SteeringWheelAngle : 8|11@1- (1,0) [-540|540] "degree"  Lamp
+ SG_ sig_CRC : 0|8@1- (1,0) [0|0] ""  Lamp
+
+BO_ 1024 msg_BrakeInfo: 2 BGW
+ SG_ sig_BrakePedalPress : 8|1@1+ (1,0) [0|1] ""  Lamp
+ SG_ sig_CRC : 0|8@1- (1,0) [0|0] ""  Lamp
+
+BO_ 768 msg_VehicleSpeedInfo: 2 BGW
+ SG_ sig_VehicleSpeed : 8|8@1+ (1,0) [0|200] "km/h"  Lamp
+ SG_ sig_CRC : 0|8@1- (1,0) [0|0] ""  Lamp
 
 
 
@@ -74,6 +86,12 @@ BA_DEF_DEF_  "GenMsgCycleTimeFast" 20;
 BA_DEF_DEF_  "GenMsgILSupport" "Yes";
 BA_DEF_DEF_  "GenMsgFastOnStart" 0;
 BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
-BA_ "BusType" "CAN";
 BA_ "DatabaseVersion" "1.1";
+BA_ "BusType" "CAN";
+BA_ "GenSigSendType" SG_ 1280 sig_SteeringWheelAngle 7;
+BA_ "GenSigSendType" SG_ 1280 sig_CRC 7;
+BA_ "GenSigSendType" SG_ 1024 sig_BrakePedalPress 7;
+BA_ "GenSigSendType" SG_ 1024 sig_CRC 7;
+BA_ "GenSigSendType" SG_ 768 sig_VehicleSpeed 7;
+BA_ "GenSigSendType" SG_ 768 sig_CRC 7;
 
