@@ -36,6 +36,15 @@ BS_:
 BU_: Engine
 
 
+BO_ 256 MSG_AccelPedalInfo: 2 Engine
+ SG_ SIG_AccelPedalPos : 8|7@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ SIG_AccelPedalState : 15|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 0 MSG_VehicleSpeedInfo: 2 Engine
+ SG_ SIG_VehicleSpeed : 8|8@1+ (1,0) [0|250] "km/h" Vector__XXX
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
 
 
 BA_DEF_  "MultiplexExtEnabled" ENUM  "No","Yes";
