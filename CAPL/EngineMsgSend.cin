@@ -16,3 +16,21 @@ void sendVehicleSpeedInfo(void)
     
     output(msg);
 }
+
+void sendAccelPedalInfo(void)
+{
+    message PCAN_DB::MSG_AccelPedalInfo msg;
+    byte data[1];
+    dword crc;
+    
+    msg.can = 1;
+    msg.SIG_AccelPedalPos   = @sysvar::Engine::SYSVAR_AccelPedalPos;
+    msg.SIG_AccelPedalState = @sysvar::Engine::SYSVAR_AccelPedalState;
+    
+    data[0] = msg.byte(1);
+    
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
+    msg.SIG_Crc = crc;
+    
+    output(msg);
+}
