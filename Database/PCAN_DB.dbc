@@ -36,6 +36,10 @@ BS_:
 BU_: Engine
 
 
+BO_ 0 MSG_EngineInfo: 2 Vector__XXX
+ SG_ SIG_VehicleSpeed : 8|8@1+ (1,0) [0|250] "" Vector__XXX
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
 
 
 BA_DEF_  "MultiplexExtEnabled" ENUM  "No","Yes";
