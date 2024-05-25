@@ -1,13 +1,13 @@
 ﻿/*@!Encoding:65001*/
 
-void sendBrakePedalInfo(void)
+void sendVehicleSpeedInfo(void)
 {
-    message CCAN_DB::MSG_BrakePedalInfo msg;
+    message PCAN_DB::MSG_VehicleSpeedInfo msg;
     byte data[1];
     dword crc;
     
-    msg.SIG_BrakePedalPos   = @sysvar::Brake::SYSVAR_BrakePedalPos;
-    msg.SIG_BrakePedalPress = @sysvar::Brake::SYSVAR_BrakePedalState;
+    msg.can = 1;
+    msg.SIG_VehicleSpeed = @sysvar::Engine::SYSVAR_VehicleSpeed;
     
     data[0] = msg.byte(1);
     
