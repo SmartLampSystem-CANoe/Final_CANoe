@@ -1,0 +1,17 @@
+﻿/*@!Encoding:65001*/
+
+void sendBrakePedalInfo(void)
+{
+    message CCAN_DB::MSG_BrakePedalInfo msg;
+    byte data[1];
+    dword crc;
+    
+    msg.SIG_BrakePedalPos   = @sysvar::Brake::SYSVAR_BrakePedalPos;
+    msg.SIG_BrakePedalPress = @sysvar::Brake::SYSVAR_BrakePedalState;
+    
+    data[0] = msg.byte(0);
+    
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
+    
+    output(msg);
+}

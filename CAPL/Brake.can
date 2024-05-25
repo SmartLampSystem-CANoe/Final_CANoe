@@ -1,6 +1,7 @@
 ﻿/*@!Encoding:65001*/
 includes
 {
+    #include "BrakeMsgSend.cin"
 }
 
 variables
@@ -15,5 +16,5 @@ on start
 
 on timer t_10ms
 {
-    
+    sendBrakePedalInfo();
 }
