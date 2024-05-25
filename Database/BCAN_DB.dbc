@@ -45,7 +45,7 @@ BO_ 1280 MSG_SteeringWheelInfo: 3 Vector__XXX
  SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
 
 BO_ 768 MSG_VehicleSpeedInfo: 2 Vector__XXX
- SG_ SIG_VehicleSpeed : 8|8@1+ (1,0) [0|200] "km/h" Vector__XXX
+ SG_ SIG_VehicleSpeed : 8|8@1+ (1,0) [0|250] "km/h" Vector__XXX
  SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
 
 
