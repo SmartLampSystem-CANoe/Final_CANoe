@@ -1,11 +1,21 @@
 ﻿/*@!Encoding:65001*/
 includes
 {
-  
+    #include "EngineMsgSend.cin"
 }
 
 variables
 {
-  
+    mstimer t_10ms;
 }
 
+on start
+{
+    setTimerCyclic(t_10ms, 10);
+}
+
+on timer t_10ms
+{
+    sendVehicleSpeedInfo();
+    sendAccelPedalInfo();
+}

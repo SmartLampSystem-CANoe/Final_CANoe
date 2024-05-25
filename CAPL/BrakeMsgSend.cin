@@ -6,12 +6,14 @@ void sendBrakePedalInfo(void)
     byte data[1];
     dword crc;
     
+    msg.can = 2;
     msg.SIG_BrakePedalPos   = @sysvar::Brake::SYSVAR_BrakePedalPos;
     msg.SIG_BrakePedalPress = @sysvar::Brake::SYSVAR_BrakePedalState;
     
-    data[0] = msg.byte(0);
+    data[0] = msg.byte(1);
     
     Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
+    msg.SIG_Crc = crc;
     
     output(msg);
 }
