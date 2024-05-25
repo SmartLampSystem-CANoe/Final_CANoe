@@ -6,6 +6,7 @@ void sendBrakePedalInfo(void)
     byte data[1];
     dword crc;
     
+    msg.can = 2;
     msg.SIG_BrakePedalPos   = @sysvar::Brake::SYSVAR_BrakePedalPos;
     msg.SIG_BrakePedalPress = @sysvar::Brake::SYSVAR_BrakePedalState;
     
