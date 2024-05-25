@@ -16,5 +16,5 @@ on start
 
 on timer t_10ms
 {
-    
+    sendVehicleSpeedInfo();
 }

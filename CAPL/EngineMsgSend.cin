@@ -1,1 +1,22 @@
 ﻿/*@!Encoding:65001*/
+variables
+{
+    const int PCAN = 1;
+}
+
+void sendVehicleSpeedInfo(void)
+{
+    message PCAN_DB::MSG_VehicleSpeedInfo msg;
+    byte data[1];
+    dword crc;
+    
+    msg.can = PCAN;
+    msg.SIG_VehicleSpeed = @sysvar::Engine::SYSVAR_VehicleSpeed;
+    
+    data[0] = msg.byte(1);
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount(data), 0, 1, crc);
+    
+    msg.SIG_Crc = crc;
+    
+    output(msg);
+}
