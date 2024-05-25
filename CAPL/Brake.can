@@ -1,0 +1,20 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+    #include "BrakeMsgSend.cin"
+}
+
+variables
+{
+    msTimer t_10ms;
+}
+
+on start
+{
+    setTimerCyclic(t_10ms, 10);
+}
+
+on timer t_10ms
+{
+    sendBrakePedalInfo();
+}
