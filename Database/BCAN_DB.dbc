@@ -36,6 +36,18 @@ BS_:
 BU_: Cluster Lamp
 
 
+BO_ 1024 MSG_BrakePedalInfo: 2 Vector__XXX
+ SG_ SIG_BrakePedalState : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1280 MSG_SteeringWheelInfo: 3 Vector__XXX
+ SG_ SIG_SteeringWheelAngle : 8|11@1- (1,0) [-540|540] "degree" Vector__XXX
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 768 MSG_VehicleSpeedInfo: 2 Vector__XXX
+ SG_ SIG_VehicleSpeed : 8|8@1+ (1,0) [0|250] "km/h" Vector__XXX
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
 
 
 BA_DEF_  "MultiplexExtEnabled" ENUM  "No","Yes";
