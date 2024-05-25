@@ -1,0 +1,20 @@
+﻿/*@!Encoding:65001*/
+
+void sendSteeringWheelInfo(void)
+{
+    message CCAN_DB::MSG_SteeringWheelInfo msg;
+    byte data[2];
+    dword crc;
+    int i;
+    
+    msg.can = 2;
+    msg.SIG_SteeringWheelAngle = @sysvar::Steering::SYSVAR_SteeringWheelAngle;
+    
+    data[1] = msg.byte(1);
+    data[0] = msg.byte(2);
+    
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
+    msg.SIG_Crc = crc;
+    
+    output(msg);
+}

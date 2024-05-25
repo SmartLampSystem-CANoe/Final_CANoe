@@ -1,11 +1,20 @@
 ﻿/*@!Encoding:65001*/
 includes
 {
-  
+    #include "SteeringMsgSend.cin"
 }
 
 variables
 {
-  
+    msTimer t_10ms;
 }
 
+on start
+{
+    setTimerCyclic(t_10ms, 10);
+}
+
+on timer t_10ms
+{
+    sendSteeringWheelInfo();
+}
