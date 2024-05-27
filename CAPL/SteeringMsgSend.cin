@@ -5,7 +5,6 @@ void sendSteeringWheelInfo(void)
     message CCAN_DB::MSG_SteeringWheelInfo msg;
     byte data[2];
     dword crc;
-    int i;
     
     msg.can = 2;
     msg.SIG_SteeringWheelAngle = @sysvar::Steering::SYSVAR_SteeringWheelAngle;

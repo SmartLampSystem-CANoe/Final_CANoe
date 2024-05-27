@@ -46,8 +46,8 @@ on timer t_100ms
     
     if ((@Lamp::SYSVAR_FLampMode & kHBEAM_AUTO) != 0)  // high beam auto
     {
-        write("1");
-        @Lamp::SYSVAR_LeftHBeamState  = @Lamp::SYSVAR_RightHBeamState = 0;
+        @Lamp::SYSVAR_LeftHBeamState  = 0;
+        @Lamp::SYSVAR_RightHBeamState = 0;
         @Lamp::SYSVAR_LeftHBeamState  = ((@ExtFactor::SYSVAR_PrecedingCarPos == 1) || (@ExtFactor::SYSVAR_PrecedingCarPos == 2)) ? 0 : 1;
         @Lamp::SYSVAR_RightHBeamState = ((@ExtFactor::SYSVAR_PrecedingCarPos == 2) || (@ExtFactor::SYSVAR_PrecedingCarPos == 3)) ? 0 : 1;
     }
@@ -55,7 +55,6 @@ on timer t_100ms
     {
         @Lamp::SYSVAR_LeftHBeamState  = 1;
         @Lamp::SYSVAR_RightHBeamState = 1;
-        write("2 %d %d",  @Lamp::SYSVAR_LeftHBeamState,  @Lamp::SYSVAR_RightHBeamState);
     }
     else
     {
@@ -124,7 +123,7 @@ on message can3.BCAN_DB::MSG_SteeringWheelInfo
         return;
     }
     
-    @Lamp::SYSVAR_HBeamAngle = (@Lamp::SYSVAR_AutoLBeamAngleState != 0) ? this.SIG_SteeringWheelAngle / 100 : 0;
+    @Lamp::SYSVAR_LowBeamAngle = (@Lamp::SYSVAR_AutoLBeamAngleState != 0) ? (this.SIG_SteeringWheelAngle / 100) : 0;
 }
 
 on message can3.BCAN_DB::MSG_VehicleSpeedInfo
@@ -184,16 +183,7 @@ on message can3.BCAN_DB::MSG_DirLampCtrl
 }
 
 on message can3.BCAN_DB::MSG_HarzardLightCtrl
-{
-    // CRC check
-    byte data[1];
-    data[0] = this.byte(1);
-    if (checkCRC(this, data) == 0)
-    {
-        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
-        return; 
-    }
-    
+{    
     // Data range check
     if ((this.SIG_HarzardLightBtn != 0) && (this.SIG_HarzardLightBtn != 1))
     {

@@ -32,7 +32,7 @@ on sysvar Panel::SYSVAR_LeverPushPull
 {
     if (@Panel::SYSVAR_LeverDial == kOFF)
     {
-        @this = 1;
+        @this = 1;  // lever = neutral
         return;
     }
     

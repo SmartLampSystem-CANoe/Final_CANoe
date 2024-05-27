@@ -37,7 +37,7 @@ on message can1.PCAN_DB::MSG_VehicleSpeedInfo
     if (checkCRC(this, data) == 0)
     {
         write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
-        return; 
+        return;
     }
     
     // data range check

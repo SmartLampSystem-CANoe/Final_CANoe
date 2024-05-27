@@ -11,11 +11,11 @@ int checkCRC(message *msg, byte data[])
     int crcResult = 0;
     int crc_msg;
     dword crc_data;
-    
+
     crc_msg = msg.byte(0);
     Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
-    
+
     crcResult = (crc_msg == crc_data) ? 1 : 0;
-    
+
     return crcResult;
 }

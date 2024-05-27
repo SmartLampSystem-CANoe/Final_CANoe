@@ -203,7 +203,7 @@
       <Property Name="ReadOnlyControl">True</Property>
     </Object>
     <Property Name="Name">Panel</Property>
-    <Property Name="Size">994, 516</Property>
+    <Property Name="Size">788, 446</Property>
     <Property Name="BackColor">White</Property>
   </Object>
 </Panel>
