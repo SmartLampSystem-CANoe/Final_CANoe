@@ -1,0 +1,52 @@
+﻿/*@!Encoding:65001*/
+
+includes
+{
+    #include "forward.cin"
+}
+
+variables
+{
+    msTimer t_100ms;
+    
+    message BCAN_DB::MSG_VehicleSpeedInfo msg_VehicleSpeedInfo;
+}
+
+on start
+{
+    setTimerCyclic(t_100ms, 100);
+}
+
+
+/*---------------------------------------------------------------------------------------
+----------------------------- gateway forwards PCAN messages ----------------------------
+---------------------------------------------------------------------------------------*/
+on timer t_100ms
+{
+    forwardMsg(msg_VehicleSpeedInfo, 3);
+}
+
+/*---------------------------------------------------------------------------------------
+----------------------------- gateway receives PCAN messages ----------------------------
+---------------------------------------------------------------------------------------*/
+on message can1.PCAN_DB::MSG_VehicleSpeedInfo
+{
+    // CRC check
+    byte data[1];
+    data[0] = this.byte(1);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return; 
+    }
+    
+    // data range check
+    if ((this.SIG_VehicleSpeed < 0) || (this.SIG_VehicleSpeed > 250))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    msg_VehicleSpeedInfo.SIG_Crc = this.SIG_Crc;
+    msg_VehicleSpeedInfo.SIG_VehicleSpeed = this.SIG_VehicleSpeed;
+}

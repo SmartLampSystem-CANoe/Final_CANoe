@@ -1,0 +1,6 @@
+﻿/*@!Encoding:65001*/
+
+on sysvar Brake::SYSVAR_BrakePedalPos
+{
+    @Brake::SYSVAR_BrakePedalState = (@this > 0) ? 1 : 0;
+}

@@ -34,19 +34,42 @@ NS_ :
 BS_:
 
 BU_: GW Cluster Lamp
+VAL_TABLE_ vtb_HLBeamMode 10 "ON+HBEAM_ON" 9 "AUTO+HBEAM_ON" 6 "ON+HBEAM_AUTO" 5 "AUTO+HBEAM_AUTO" 2 "ON" 1 "AUTO" 0 "OFF" ;
+VAL_TABLE_ vtb_time 1 "LONG" 0 "SHORT" ;
+VAL_TABLE_ vtb_OnOff 1 "ON" 0 "OFF" ;
+VAL_TABLE_ vtb_dir 1 "RIGHT" 0 "LEFT" ;
+VAL_TABLE_ vtb_TF 1 "TRUE" 0 "FALSE" ;
 
 
-BO_ 1024 MSG_BrakePedalInfo: 2 Vector__XXX
- SG_ SIG_BrakePedalState : 8|1@1+ (1,0) [0|1] "" Vector__XXX
- SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+BO_ 515 MSG_LBeamAutoAngleCtrl: 2 Cluster
+ SG_ SIG_AutoLowBeamAngleBtn : 8|1@1+ (1,0) [0|1] ""  Lamp
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] ""  Lamp
 
-BO_ 1280 MSG_SteeringWheelInfo: 3 Vector__XXX
- SG_ SIG_SteeringWheelAngle : 8|11@1- (1,0) [-540|540] "degree" Vector__XXX
- SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+BO_ 514 MSG_HLBeamCtrl: 2 Cluster
+ SG_ SIG_HBeamAngle : 12|2@1+ (1,0) [0|3] ""  Lamp
+ SG_ SIG_HLBeamMode : 8|4@1+ (1,0) [0|10] ""  Lamp
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] ""  Lamp
 
-BO_ 768 MSG_VehicleSpeedInfo: 2 Vector__XXX
- SG_ SIG_VehicleSpeed : 8|8@1+ (1,0) [0|250] "km/h" Vector__XXX
- SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+BO_ 512 MSG_HarzardLightCtrl: 2 Cluster
+ SG_ SIG_HarzardLightBtn : 8|1@1+ (1,0) [0|1] ""  Lamp
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] ""  Lamp
+
+BO_ 513 MSG_DirLampCtrl: 8 Cluster
+ SG_ SIG_IndicatorTime : 2|1@1+ (1,0) [0|1] ""  Lamp
+ SG_ SIG_IndicatorDir : 1|1@1+ (1,0) [0|1] ""  Lamp
+ SG_ SIG_IndicatorState : 0|1@1+ (1,0) [0|1] ""  Lamp
+
+BO_ 1024 MSG_BrakePedalInfo: 2 GW
+ SG_ SIG_BrakePedalState : 8|1@1+ (1,0) [0|1] ""  Lamp
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] ""  Lamp
+
+BO_ 1280 MSG_SteeringWheelInfo: 3 GW
+ SG_ SIG_SteeringWheelAngle : 8|11@1- (1,0) [-540|540] "degree"  Lamp
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] ""  Lamp
+
+BO_ 768 MSG_VehicleSpeedInfo: 2 GW
+ SG_ SIG_VehicleSpeed : 8|8@1+ (1,0) [0|250] "km/h"  Lamp
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] ""  Lamp
 
 
 
@@ -66,4 +89,11 @@ BA_DEF_DEF_  "CANoeJitterMax" 0;
 BA_DEF_DEF_  "CANoeJitterMin" 0;
 BA_DEF_DEF_  "CANoeDrift" 0;
 BA_DEF_DEF_  "CANoeStartDelay" 0;
+VAL_ 515 SIG_AutoLowBeamAngleBtn 1 "TRUE" 0 "FALSE" ;
+VAL_ 514 SIG_HLBeamMode 10 "ON+HBEAM_ON" 9 "AUTO+HBEAM_ON" 6 "ON+HBEAM_AUTO" 5 "AUTO+HBEAM_AUTO" 2 "ON" 1 "AUTO" 0 "OFF" ;
+VAL_ 512 SIG_HarzardLightBtn 1 "ON" 0 "OFF" ;
+VAL_ 513 SIG_IndicatorTime 1 "LONG" 0 "SHORT" ;
+VAL_ 513 SIG_IndicatorDir 1 "RIGHT" 0 "LEFT" ;
+VAL_ 513 SIG_IndicatorState 1 "ON" 0 "OFF" ;
+VAL_ 1024 SIG_BrakePedalState 1 "TRUE" 0 "FALSE" ;
 

@@ -1,0 +1,272 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+    #include "forward.cin"
+}
+
+variables
+{
+    const int kOFF        = 0;
+    const int kAUTO       = (1 << 0);
+    const int kON         = (1 << 1);
+    const int kHBEAM_AUTO = (1 << 2);
+    const int kHBEAM_ON   = (1 << 3);
+    
+    msTimer t_dirIndicator;
+    msTimer t_harzardLight;
+    
+    msTimer t_100ms;
+}
+
+on start
+{
+    setTimerCyclic(t_100ms, 100);
+}
+/*--------------------------------------------------------------------------------------------------------
+---------------------------------------------Periodic Tasks-----------------------------------------------
+--------------------------------------------------------------------------------------------------------*/
+on timer t_100ms
+{
+    if (@Lamp::SYSVAR_FLampMode == kOFF)
+    {
+        @Lamp::SYSVAR_LowBeamState    = 0;
+        @Lamp::SYSVAR_LeftHBeamState  = 0;
+        @Lamp::SYSVAR_RightHBeamState = 0;
+        return;
+    }
+    
+    if ((@Lamp::SYSVAR_FLampMode & kAUTO) != 0)  // auto mode
+    {
+        @Lamp::SYSVAR_LowBeamState = (@Lamp::SYSVAR_ExtLightState <= 20) ? 1 : 0;  // turned on at night
+    }
+    else if ((@Lamp::SYSVAR_FLampMode & kON) != 0)  // on
+    {
+        @Lamp::SYSVAR_LowBeamState = 1;
+    }
+    
+    if ((@Lamp::SYSVAR_FLampMode & kHBEAM_AUTO) != 0)  // high beam auto
+    {
+        write("1");
+        @Lamp::SYSVAR_LeftHBeamState  = @Lamp::SYSVAR_RightHBeamState = 0;
+        @Lamp::SYSVAR_LeftHBeamState  = ((@ExtFactor::SYSVAR_PrecedingCarPos == 1) || (@ExtFactor::SYSVAR_PrecedingCarPos == 2)) ? 0 : 1;
+        @Lamp::SYSVAR_RightHBeamState = ((@ExtFactor::SYSVAR_PrecedingCarPos == 2) || (@ExtFactor::SYSVAR_PrecedingCarPos == 3)) ? 0 : 1;
+    }
+    else if ((@Lamp::SYSVAR_FLampMode & kHBEAM_ON) != 0)
+    {
+        @Lamp::SYSVAR_LeftHBeamState  = 1;
+        @Lamp::SYSVAR_RightHBeamState = 1;
+        write("2 %d %d",  @Lamp::SYSVAR_LeftHBeamState,  @Lamp::SYSVAR_RightHBeamState);
+    }
+    else
+    {
+        @Lamp::SYSVAR_LeftHBeamState  = 0;
+        @Lamp::SYSVAR_RightHBeamState = 0;
+    }
+}
+
+/*--------------------------------------------------------------------------------------------------------
+---------------------------------------------Toggling Lamps-----------------------------------------------
+--------------------------------------------------------------------------------------------------------*/
+// timer activated if dir signal comes
+on timer t_dirIndicator
+{
+    @Lamp::SYSVAR_LeftDirLamp  = (@Lamp::SYSVAR_IndicatorDir == 0) ? !(@Lamp::SYSVAR_LeftDirLamp) : 0;
+    @Lamp::SYSVAR_RightDirLamp = (@Lamp::SYSVAR_IndicatorDir == 1) ? !(@Lamp::SYSVAR_RightDirLamp) : 0;
+}
+
+// timer activated if harzard light signal caomes
+on timer t_harzardLight
+{
+    @Lamp::SYSVAR_HarzardLight  = !(@Lamp::SYSVAR_HarzardLight);
+}
+
+/*--------------------------------------------------------------------------------------------------------
+--------------------------------------Lamp ECU message Receive--------------------------------------------
+--------------------------------------------------------------------------------------------------------*/
+on message can3.BCAN_DB::MSG_BrakePedalInfo
+{
+    // CRC check
+    byte data[1];
+    data[0] = this.byte(1);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return; 
+    }
+    
+    // Data range check
+    if ((this.SIG_BrakePedalState != 0) && (this.SIG_BrakePedalState != 1))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    // turn on brake lamp
+    @Lamp::SYSVAR_BrakeLamp = this.SIG_BrakePedalState;
+}
+
+on message can3.BCAN_DB::MSG_SteeringWheelInfo
+{
+    // CRC check
+    byte data[2];
+    data[1] = this.byte(1);
+    data[0] = this.byte(2);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return; 
+    }
+    
+    // Data range check
+    if ((this.SIG_SteeringWheelAngle < -540) && (this.SIG_SteeringWheelAngle > 540))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    @Lamp::SYSVAR_HBeamAngle = (@Lamp::SYSVAR_AutoLBeamAngleState != 0) ? this.SIG_SteeringWheelAngle / 100 : 0;
+}
+
+on message can3.BCAN_DB::MSG_VehicleSpeedInfo
+{
+    // CRC check
+    byte data[1];
+    data[0] = this.byte(1);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return; 
+    }
+    
+    // Data range check
+    if ((this.SIG_VehicleSpeed < 0) && (this.SIG_VehicleSpeed > 250))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    @Lamp::SYSVAR_VehicleSpeed = this.SIG_VehicleSpeed;
+}
+
+on message can3.BCAN_DB::MSG_DirLampCtrl
+{
+    // Data range check
+    if ((this.SIG_IndicatorState != 0) && (this.SIG_IndicatorState != 1))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    if ((this.SIG_IndicatorDir != 0) && (this.SIG_IndicatorDir != 1))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    if ((this.SIG_IndicatorTime != 0) && (this.SIG_IndicatorTime != 1))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    // toggle target dir indicator, every 500ms
+    @Lamp::SYSVAR_IndicatorDir = this.SIG_IndicatorDir;
+    
+    if (this.SIG_IndicatorState == 1)
+    {
+        setTimerCyclic(t_dirIndicator, 500);
+    }
+    else
+    {
+        @Lamp::SYSVAR_LeftDirLamp = @Lamp::SYSVAR_RightDirLamp = 0;
+        cancelTimer(t_dirIndicator);
+    }
+}
+
+on message can3.BCAN_DB::MSG_HarzardLightCtrl
+{
+    // CRC check
+    byte data[1];
+    data[0] = this.byte(1);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return; 
+    }
+    
+    // Data range check
+    if ((this.SIG_HarzardLightBtn != 0) && (this.SIG_HarzardLightBtn != 1))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    // toggle harzard light, every 500ms
+    if (this.SIG_HarzardLightBtn == 1)
+    {
+        setTimerCyclic(t_harzardLight, 500);
+    }
+    else
+    {
+        @Lamp::SYSVAR_HarzardLight = 0;
+        cancelTimer(t_harzardLight);
+    }
+}
+
+on message can3.BCAN_DB::MSG_HLBeamCtrl
+{
+    // CRC check
+    byte data[1];
+    data[0] = this.byte(1);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return; 
+    }
+    
+    // Data range check
+    if ((this.SIG_HLBeamMode != 0) && (this.SIG_HLBeamMode != 1) && (this.SIG_HLBeamMode != 2) && 
+        (this.SIG_HLBeamMode != 5) && (this.SIG_HLBeamMode != 6) && (this.SIG_HLBeamMode != 9) && 
+        (this.SIG_HLBeamMode != 10))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    if ((this.SIG_HBeamAngle < 0) || (this.SIG_HBeamAngle > 3))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    @Lamp::SYSVAR_FLampMode  = this.SIG_HLBeamMode;
+    @Lamp::SYSVAR_HBeamAngle = this.SIG_HBeamAngle;
+}
+
+on message can3.BCAN_DB::MSG_LBeamAutoAngleCtrl
+{
+    // CRC check
+    byte data[1];
+    data[0] = this.byte(1);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return; 
+    }
+    
+    // Data range check
+    if ((this.SIG_AutoLowBeamAngleBtn != 0) && (this.SIG_AutoLowBeamAngleBtn != 1))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    if (@Lamp::SYSVAR_AutoLBeamAngleState == 1)
+    {
+        @Lamp::SYSVAR_AutoLBeamAngleState = 0;
+    }
+    else if ((@Lamp::SYSVAR_AutoLBeamAngleState == 0) && (@Lamp::SYSVAR_VehicleSpeed > 35))
+    {
+        @Lamp::SYSVAR_AutoLBeamAngleState = 1;
+    }
+}

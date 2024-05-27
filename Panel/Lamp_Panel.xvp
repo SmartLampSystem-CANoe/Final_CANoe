@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="Lamp_Panel">
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl10" Children="Controls" ControlName="Static Text 10">
+      <Property Name="Name">StaticTextControl10</Property>
+      <Property Name="Size">95, 12</Property>
+      <Property Name="Location">196, 346</Property>
+      <Property Name="Text">High Beam Angle</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LCDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LCDControl2" ControlName="LCD Control 2">
+      <Property Name="Name">LCDControl2</Property>
+      <Property Name="Size">99, 134</Property>
+      <Property Name="Location">421, 206</Property>
+      <Property Name="NumberIntDigits">1</Property>
+      <Property Name="DecimalPlaces">0</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_LowBeamAngle;1;;;-1;;;;;;0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl9" Children="Controls" ControlName="Static Text 9">
+      <Property Name="Name">StaticTextControl9</Property>
+      <Property Name="Size">94, 12</Property>
+      <Property Name="Location">426, 346</Property>
+      <Property Name="Text">Low Beam Angle</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LCDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LCDControl1" ControlName="LCD Control 1">
+      <Property Name="Name">LCDControl1</Property>
+      <Property Name="Size">99, 134</Property>
+      <Property Name="Location">190, 206</Property>
+      <Property Name="NumberIntDigits">1</Property>
+      <Property Name="DecimalPlaces">0</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_HBeamAngle;1;;;-1;;;;;;0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl15" ControlName="LED Control 15">
+      <Property Name="Name">LEDControl15</Property>
+      <Property Name="Size">48, 48</Property>
+      <Property Name="Location">647, 106</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_RightHBeamState;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">39</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl8" Children="Controls" ControlName="Static Text 8">
+      <Property Name="Name">StaticTextControl8</Property>
+      <Property Name="Size">62, 12</Property>
+      <Property Name="Location">603, 158</Property>
+      <Property Name="Text">High Beam</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl16" ControlName="LED Control 16">
+      <Property Name="Name">LEDControl16</Property>
+      <Property Name="Size">48, 48</Property>
+      <Property Name="Location">575, 106</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_LeftHBeamState;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">38</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl14" ControlName="LED Control 14">
+      <Property Name="Name">LEDControl14</Property>
+      <Property Name="Size">48, 48</Property>
+      <Property Name="Location">476, 106</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_LowBeamState;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">36</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl13" ControlName="LED Control 13">
+      <Property Name="Name">LEDControl13</Property>
+      <Property Name="Size">48, 48</Property>
+      <Property Name="Location">404, 106</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_LowBeamState;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">33</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl7" Children="Controls" ControlName="Static Text 7">
+      <Property Name="Name">StaticTextControl7</Property>
+      <Property Name="Size">61, 12</Property>
+      <Property Name="Location">431, 158</Property>
+      <Property Name="Text">Low Beam</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl12" ControlName="LED Control 12">
+      <Property Name="Name">LEDControl12</Property>
+      <Property Name="Size">43, 43</Property>
+      <Property Name="Location">575, 30</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_HarzardLight;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">25</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl11" ControlName="LED Control 11">
+      <Property Name="Name">LEDControl11</Property>
+      <Property Name="Size">43, 43</Property>
+      <Property Name="Location">527, 30</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_HarzardLight;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">24</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl9" ControlName="LED Control 9">
+      <Property Name="Name">LEDControl9</Property>
+      <Property Name="Size">43, 43</Property>
+      <Property Name="Location">421, 30</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_HarzardLight;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">23</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" Children="Controls" ControlName="Static Text 5">
+      <Property Name="Name">StaticTextControl5</Property>
+      <Property Name="Size">108, 12</Property>
+      <Property Name="Location">356, 78</Property>
+      <Property Name="Text">Front Harzard Lamp</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl10" ControlName="LED Control 10">
+      <Property Name="Name">LEDControl10</Property>
+      <Property Name="Size">43, 43</Property>
+      <Property Name="Location">356, 30</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_HarzardLight;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">17</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" Children="Controls" ControlName="Static Text 6">
+      <Property Name="Name">StaticTextControl6</Property>
+      <Property Name="Size">96, 12</Property>
+      <Property Name="Location">527, 78</Property>
+      <Property Name="Text">Tail Harzard Light</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="Static Text 4">
+      <Property Name="Name">StaticTextControl4</Property>
+      <Property Name="Size">73, 12</Property>
+      <Property Name="Location">234, 158</Property>
+      <Property Name="Text">Tail Dir Lamp</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl7" ControlName="LED Control 7">
+      <Property Name="Name">LEDControl7</Property>
+      <Property Name="Size">48, 48</Property>
+      <Property Name="Location">283, 106</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_RightDirLamp;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">13</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl8" ControlName="LED Control 8">
+      <Property Name="Name">LEDControl8</Property>
+      <Property Name="Size">48, 48</Property>
+      <Property Name="Location">207, 106</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_LeftDirLamp;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">12</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Static Text 3">
+      <Property Name="Name">StaticTextControl3</Property>
+      <Property Name="Size">82, 12</Property>
+      <Property Name="Location">59, 158</Property>
+      <Property Name="Text">Front Dir Lamp</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl5" ControlName="LED Control 5">
+      <Property Name="Name">LEDControl5</Property>
+      <Property Name="Size">43, 43</Property>
+      <Property Name="Location">119, 21</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_BrakeLamp;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="Static Text 2">
+      <Property Name="Name">StaticTextControl2</Property>
+      <Property Name="Size">89, 12</Property>
+      <Property Name="Location">130, 69</Property>
+      <Property Name="Text">Tail Brake Lamp</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl6" ControlName="LED Control 6">
+      <Property Name="Name">LEDControl6</Property>
+      <Property Name="Size">43, 43</Property>
+      <Property Name="Location">185, 21</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_BrakeLamp;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">7</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl3" ControlName="LED Control 3">
+      <Property Name="Name">LEDControl3</Property>
+      <Property Name="Size">48, 48</Property>
+      <Property Name="Location">101, 106</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_RightDirLamp;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LEDControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="LEDControl2" ControlName="LED Control 2">
+      <Property Name="Name">LEDControl2</Property>
+      <Property Name="Size">48, 48</Property>
+      <Property Name="Location">36, 106</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;Color&gt;Gray&lt;/Color&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;Color&gt;Red&lt;/Color&gt;</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_LeftDirLamp;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">1</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">773, 430</Property>
+    <Property Name="BackColor">White</Property>
+  </Object>
+</Panel>

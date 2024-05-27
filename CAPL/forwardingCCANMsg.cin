@@ -1,0 +1,88 @@
+﻿/*@!Encoding:65001*/
+
+includes
+{
+    #include "forward.cin"
+}
+
+variables
+{
+    msTimer t_50ms;
+    
+    message BCAN_DB::MSG_BrakePedalInfo    msg_BrakePedalInfo;
+    message BCAN_DB::MSG_SteeringWheelInfo msg_SteeringWheelInfo;
+}
+
+on start
+{
+    setTimerCyclic(t_50ms, 50);
+}
+
+
+/*---------------------------------------------------------------------------------------
+----------------------------- gateway forwards CCAN messages ----------------------------
+---------------------------------------------------------------------------------------*/
+on timer t_50ms
+{
+    forwardMsg(msg_BrakePedalInfo, 3);
+    forwardMsg(msg_SteeringWheelInfo, 3);
+}
+
+/*---------------------------------------------------------------------------------------
+----------------------------- gateway receives CCAN messages ----------------------------
+---------------------------------------------------------------------------------------*/
+on message can2.CCAN_DB::MSG_BrakePedalInfo
+{
+    // CRC check
+    byte data[1];
+    data[0] = this.byte(1);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return; 
+    }
+
+    // data range check
+    if ((this.SIG_BrakePedalPos < 0) || (this.SIG_BrakePedalPos > 100))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+
+    if ((this.SIG_BrakePedalPress != 0) && (this.SIG_BrakePedalPress != 1))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    msg_BrakePedalInfo.SIG_Crc = this.SIG_Crc;
+    msg_BrakePedalInfo.SIG_BrakePedalState = this.SIG_BrakePedalPress;
+}
+
+on message can2.CCAN_DB::MSG_SteeringWheelInfo
+{
+    // CRC check
+    byte data[2];
+    data[1] = this.byte(1);
+    data[0] = this.byte(2);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return; 
+    }
+
+    // data range check
+    if ((this.SIG_SteeringWheelAngle < -540) || (this.SIG_SteeringWheelAngle > 540))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    {
+        int i;
+        for (i = 0; i < this.dlc; i++)
+        {
+            msg_SteeringWheelInfo.byte(i) = this.byte(i);
+        }
+    }
+}

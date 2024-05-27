@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="Cluster_Panel">
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="Button 1">
+      <Property Name="Name">ButtonControl1</Property>
+      <Property Name="Size">142, 22</Property>
+      <Property Name="Location">623, 394</Property>
+      <Property Name="Text">Auto Low Beam Angle</Property>
+      <Property Name="SymbolConfiguration">8;16;Cluster;;;SYSVAR_AutoLBeamAngleBtn;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">23</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text 1">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">118, 12</Property>
+      <Property Name="Location">450, 223</Property>
+      <Property Name="Text">High Beam Angle Dial</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="TrackBarControl1" Children="Controls" ControlName="Track Bar 1">
+      <Property Name="Name">TrackBarControl1</Property>
+      <Property Name="Size">45, 212</Property>
+      <Property Name="Location">494, -2</Property>
+      <Property Name="MaximumSize">45, 100000</Property>
+      <Property Name="Maximum">3</Property>
+      <Property Name="Orientation">Vertical</Property>
+      <Property Name="LargeChange">1</Property>
+      <Property Name="LargeChangeDouble">1</Property>
+      <Property Name="MaximumDouble">3</Property>
+      <Property Name="SymbolConfiguration">8;16;Cluster;;;SYSVAR_HBeamAngleDial;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">21</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.CheckBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="CheckBoxControl1" Children="Controls" ControlName="Check Box 1">
+      <Property Name="Name">CheckBoxControl1</Property>
+      <Property Name="Size">82, 20</Property>
+      <Property Name="Location">472, 393</Property>
+      <Property Name="Text">Harzard Light</Property>
+      <Property Name="Appearance">Button</Property>
+      <Property Name="SymbolConfiguration">8;16;Cluster;;;SYSVAR_HarzardLightBtn;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">20</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl2" Children="Controls" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl3" ControlName="Switch/Indicator 3">
+        <Property Name="Name">SwitchControl3</Property>
+        <Property Name="Size">43, 56</Property>
+        <Property Name="Location">37, 19</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="SwitchValuesRx">1;2;0;1</Property>
+        <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+        <Property Name="IsButton">True</Property>
+        <Property Name="SymbolConfiguration">8;16;Panel;;;SYSVAR_RightDirLeverShort;1;;;-1;;;;;;0</Property>
+        <Property Name="TabIndex">27</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl2" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl2</Property>
+        <Property Name="Size">43, 56</Property>
+        <Property Name="Location">37, 108</Property>
+        <Property Name="StateCnt">2</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="SwitchValuesRx">1;2;0;1</Property>
+        <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+        <Property Name="IsButton">True</Property>
+        <Property Name="SymbolConfiguration">8;16;Panel;;;SYSVAR_LeftDirLeverShort;1;;;-1;;;;;;0</Property>
+        <Property Name="TabIndex">26</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl13" Children="Controls" ControlName="Static Text 13">
+        <Property Name="Name">StaticTextControl13</Property>
+        <Property Name="Size">25, 12</Property>
+        <Property Name="Location">156, 152</Property>
+        <Property Name="Text">Left</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl12" Children="Controls" ControlName="Static Text 12">
+        <Property Name="Name">StaticTextControl12</Property>
+        <Property Name="Size">32, 12</Property>
+        <Property Name="Location">156, 26</Property>
+        <Property Name="Text">Right</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl9" Children="Controls" ControlName="Static Text 9">
+        <Property Name="Name">StaticTextControl9</Property>
+        <Property Name="Size">98, 12</Property>
+        <Property Name="Location">5, 169</Property>
+        <Property Name="Text">Left Fast Release</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl8" Children="Controls" ControlName="Static Text 8">
+        <Property Name="Name">StaticTextControl8</Property>
+        <Property Name="Size">105, 12</Property>
+        <Property Name="Location">9, 78</Property>
+        <Property Name="Text">Right Fast Release</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl7" Children="Controls" ControlName="Static Text 7">
+        <Property Name="Name">StaticTextControl7</Property>
+        <Property Name="Size">34, 12</Property>
+        <Property Name="Location">123, 169</Property>
+        <Property Name="Text">Fixed</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="TrackBarControl4" Children="Controls" ControlName="Track Bar 4">
+        <Property Name="Name">TrackBarControl4</Property>
+        <Property Name="Size">45, 153</Property>
+        <Property Name="Location">123, 18</Property>
+        <Property Name="MaximumSize">45, 100000</Property>
+        <Property Name="Maximum">2</Property>
+        <Property Name="Orientation">Vertical</Property>
+        <Property Name="LargeChange">1</Property>
+        <Property Name="LargeChangeDouble">1</Property>
+        <Property Name="MaximumDouble">2</Property>
+        <Property Name="SymbolConfiguration">8;16;Panel;;;SYSVAR_DirLeverLong;1;;;-1;;;;;;0</Property>
+        <Property Name="TabIndex">15</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl2</Property>
+      <Property Name="Size">204, 192</Property>
+      <Property Name="Location">20, 224</Property>
+      <Property Name="Text">Dir Indicator Controller</Property>
+      <Property Name="TabIndex">19</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl1" Children="Controls" ControlName="Group Box 1">
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl11" Children="Controls" ControlName="Static Text 11">
+        <Property Name="Name">StaticTextControl11</Property>
+        <Property Name="Size">28, 12</Property>
+        <Property Name="Location">106, 96</Property>
+        <Property Name="Text">OFF</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl10" Children="Controls" ControlName="Static Text 10">
+        <Property Name="Name">StaticTextControl10</Property>
+        <Property Name="Size">37, 12</Property>
+        <Property Name="Location">108, 57</Property>
+        <Property Name="Text">AUTO</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" Children="Controls" ControlName="Static Text 6">
+        <Property Name="Name">StaticTextControl6</Property>
+        <Property Name="Size">22, 12</Property>
+        <Property Name="Location">108, 18</Property>
+        <Property Name="Text">ON</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="Static Text 4">
+        <Property Name="Name">StaticTextControl4</Property>
+        <Property Name="Size">25, 12</Property>
+        <Property Name="Location">53, 57</Property>
+        <Property Name="Text">Dial</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="TrackBarControl2" Children="Controls" ControlName="Track Bar 2">
+        <Property Name="Name">TrackBarControl2</Property>
+        <Property Name="Size">45, 106</Property>
+        <Property Name="Location">82, 10</Property>
+        <Property Name="MaximumSize">45, 100000</Property>
+        <Property Name="Maximum">2</Property>
+        <Property Name="Orientation">Vertical</Property>
+        <Property Name="LargeChange">2</Property>
+        <Property Name="LargeChangeDouble">2</Property>
+        <Property Name="MaximumDouble">2</Property>
+        <Property Name="SymbolConfiguration">8;16;Panel;;;SYSVAR_LeverDial;1;;;-1;;;;;;0</Property>
+        <Property Name="TabIndex">5</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="Static Text 2">
+        <Property Name="Name">StaticTextControl2</Property>
+        <Property Name="Size">25, 12</Property>
+        <Property Name="Location">145, 169</Property>
+        <Property Name="Text">Pull</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" Children="Controls" ControlName="Static Text 5">
+        <Property Name="Name">StaticTextControl5</Property>
+        <Property Name="Size">33, 12</Property>
+        <Property Name="Location">19, 169</Property>
+        <Property Name="Text">Push</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="TrackBarControl3" Children="Controls" ControlName="Track Bar 3">
+        <Property Name="Name">TrackBarControl3</Property>
+        <Property Name="Size">158, 47</Property>
+        <Property Name="Location">19, 134</Property>
+        <Property Name="MaximumSize">100000, 47</Property>
+        <Property Name="Maximum">2</Property>
+        <Property Name="LargeChange">1</Property>
+        <Property Name="LargeChangeDouble">1</Property>
+        <Property Name="MaximumDouble">2</Property>
+        <Property Name="SymbolConfiguration">8;16;Panel;;;SYSVAR_LeverPushPull;1;;;-1;;;;;;0</Property>
+        <Property Name="TabIndex">21</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl1</Property>
+      <Property Name="Size">192, 192</Property>
+      <Property Name="Location">246, 224</Property>
+      <Property Name="Text">Low/High Beam Controller</Property>
+      <Property Name="TabIndex">18</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Static Text 3">
+      <Property Name="Name">StaticTextControl3</Property>
+      <Property Name="Size">100, 12</Property>
+      <Property Name="Location">143, 198</Property>
+      <Property Name="Text">LampControlLever</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl1" ControlName="Switch/Indicator 1">
+      <Property Name="Name">SwitchControl1</Property>
+      <Property Name="Size">169, 220</Property>
+      <Property Name="Location">104, -6</Property>
+      <Property Name="StateCnt">5</Property>
+      <Property Name="SwitchValues">1;5;0;1;2;3;4</Property>
+      <Property Name="SwitchValuesRx">1;5;0;1;2;3;4</Property>
+      <Property Name="SwitchValuesVT">1;5;0/Lower/0;1/Lower/1;2/Lower/2;3/Lower/3;4/Lower/4</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;5&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;RxValue&gt;2&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;2&lt;/TxValue&gt;&lt;RxValue&gt;3&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;3&lt;/TxValue&gt;&lt;RxValue&gt;4&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;4&lt;/TxValue&gt;</Property>
+      <Property Name="ImageFile">LeverDial.png</Property>
+      <Property Name="SymbolConfiguration">8;16;Cluster;;;SYSVAR_FLampMode;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">0</Property>
+      <Property Name="TabStopActive">False</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">994, 516</Property>
+    <Property Name="BackColor">White</Property>
+  </Object>
+</Panel>

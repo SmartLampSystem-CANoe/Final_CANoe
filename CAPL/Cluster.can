@@ -1,0 +1,97 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  #include "ClusterSysvar.cin"
+}
+
+variables
+{
+    
+}
+
+on sysvar Cluster::SYSVAR_IndicatorState
+{
+    message BCAN::MSG_DirLampCtrl msg;
+    
+    msg.SIG_IndicatorState = @this;
+    msg.SIG_IndicatorDir   = @Cluster::SYSVAR_IndicatorDir;
+    msg.SIG_IndicatorTime  = @Cluster::SYSVAR_IndicatorTime;
+    
+    msg.can = 3;
+    
+    output(msg);
+}
+
+on sysvar Cluster::SYSVAR_HarzardLightBtn
+{
+    message BCAN_DB::MSG_HarzardLightCtrl msg;
+    
+    byte data[1];
+    dword crc;
+    
+    msg.can = 3;
+    msg.SIG_HarzardLightBtn = @Cluster::SYSVAR_HarzardLightBtn;
+    
+    data[0] = msg.byte(1);
+    
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
+    msg.SIG_Crc = crc;
+    
+    output(msg);
+}
+
+on sysvar Cluster::SYSVAR_FLampMode
+{
+    message BCAN_DB::MSG_HLBeamCtrl msg;
+    
+    byte data[1];
+    dword crc;
+    
+    msg.can = 3;
+    msg.SIG_HLBeamMode = @Cluster::SYSVAR_FLampMode;
+    msg.SIG_HBeamAngle = @Cluster::SYSVAR_HBeamAngleDial;
+    
+    data[0] = msg.byte(1);
+    
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
+    msg.SIG_Crc = crc;
+    
+    output(msg);
+}
+
+on sysvar Cluster::SYSVAR_HBeamAngleDial
+{
+    message BCAN_DB::MSG_HLBeamCtrl msg;
+
+    byte data[1];
+    dword crc;
+
+    msg.can = 3;
+    msg.SIG_HLBeamMode = @Cluster::SYSVAR_FLampMode;
+    msg.SIG_HBeamAngle = @Cluster::SYSVAR_HBeamAngleDial;
+
+    data[0] = msg.byte(1);
+
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
+    msg.SIG_Crc = crc;
+
+    output(msg);
+}
+
+on sysvar Cluster::SYSVAR_AutoLBeamAngleBtn
+{
+    message BCAN_DB::MSG_LBeamAutoAngleCtrl msg;
+
+    byte data[1];
+    dword crc;
+    
+    msg.can = 3;
+    msg.SIG_AutoLowBeamAngleBtn = @Cluster::SYSVAR_AutoLBeamAngleBtn;
+
+    data[0] = msg.byte(1);
+
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
+    msg.SIG_Crc = crc;
+
+    output(msg);
+}

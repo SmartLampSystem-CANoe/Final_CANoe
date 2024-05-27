@@ -7,7 +7,7 @@ void sendVehicleSpeedInfo(void)
     dword crc;
     
     msg.can = 1;
-    msg.SIG_VehicleSpeed = @sysvar::Engine::SYSVAR_VehicleSpeed;
+    msg.SIG_VehicleSpeed = @Engine::SYSVAR_VehicleSpeed;
     
     data[0] = msg.byte(1);
     
@@ -24,8 +24,8 @@ void sendAccelPedalInfo(void)
     dword crc;
     
     msg.can = 1;
-    msg.SIG_AccelPedalPos   = @sysvar::Engine::SYSVAR_AccelPedalPos;
-    msg.SIG_AccelPedalState = @sysvar::Engine::SYSVAR_AccelPedalState;
+    msg.SIG_AccelPedalPos   = @Engine::SYSVAR_AccelPedalPos;
+    msg.SIG_AccelPedalState = @Engine::SYSVAR_AccelPedalState;
     
     data[0] = msg.byte(1);
     

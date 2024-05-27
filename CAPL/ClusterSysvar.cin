@@ -1,0 +1,102 @@
+﻿/*@!Encoding:65001*/
+
+variables
+{
+    const int kOFF        = 0;
+    const int kAUTO       = (1 << 0);
+    const int kON         = (1 << 1);
+    const int kHBEAM_AUTO = (1 << 2);
+    const int kHBEAM_ON   = (1 << 3);
+}
+
+on sysvar_update Panel::SYSVAR_LeverDial
+{
+    if (@this == 0)  // dial == off
+    {
+        @Panel::SYSVAR_LeverPushPull = 1;  // lever = neutral;
+        @Cluster::SYSVAR_FLampMode = kOFF;
+    }
+    else if (@this == 1)  // dial == auto
+    {
+        @Cluster::SYSVAR_FLampMode |= kAUTO;
+        @Cluster::SYSVAR_FLampMode &= ~kON;
+    }
+    else  // dial == on
+    {
+        @Cluster::SYSVAR_FLampMode &= ~kAUTO;
+        @Cluster::SYSVAR_FLampMode |= kON;
+    }
+}
+
+on sysvar Panel::SYSVAR_LeverPushPull
+{
+    if (@Panel::SYSVAR_LeverDial == kOFF)
+    {
+        @this = 1;
+        return;
+    }
+    
+    if (@this == 0)  // lever == push
+    {
+        @Cluster::SYSVAR_FLampMode |= kHBEAM_AUTO;
+        @Cluster::SYSVAR_FLampMode &= ~kHBEAM_ON;
+    }
+    else if (@this == 1)  // lever == neutral
+    {
+        @Cluster::SYSVAR_FLampMode &= ~kHBEAM_AUTO;
+        @Cluster::SYSVAR_FLampMode &= ~kHBEAM_ON;
+    }
+    else  // lever == pull
+    {
+        @Cluster::SYSVAR_FLampMode &= ~kHBEAM_AUTO;
+        @Cluster::SYSVAR_FLampMode |= kHBEAM_ON;
+    }
+}
+
+on sysvar Panel::SYSVAR_DirLeverLong
+{
+    if (@this == 2)  // right long
+    {
+        @Cluster::SYSVAR_IndicatorDir   = 1;  // right
+        @Cluster::SYSVAR_IndicatorTime  = 1;  // long
+        @Cluster::SYSVAR_IndicatorState = 1;  // on
+    }
+    else if (@this == 1)  // indicator off
+    {
+        @Cluster::SYSVAR_IndicatorState = 0;  // off
+    }
+    else  // left long
+    {
+        @Cluster::SYSVAR_IndicatorDir   = 0;  // left
+        @Cluster::SYSVAR_IndicatorTime  = 1;  // long
+        @Cluster::SYSVAR_IndicatorState = 1;  // on
+    }
+}
+
+on sysvar Panel::SYSVAR_LeftDirLeverShort
+{
+    if (@this == 1)  // left short
+    {
+        @Cluster::SYSVAR_IndicatorDir   = 0;  // left
+        @Cluster::SYSVAR_IndicatorTime  = 0;  // short
+        @Cluster::SYSVAR_IndicatorState = 1;  // on
+    }
+    else  // indicator off
+    {
+        @Cluster::SYSVAR_IndicatorState = 0;  // off
+    }
+}
+
+on sysvar Panel::SYSVAR_RightDirLeverShort
+{
+    if (@this == 1)  // right short
+    {
+        @Cluster::SYSVAR_IndicatorDir   = 1;  // right
+        @Cluster::SYSVAR_IndicatorTime  = 0;  // short
+        @Cluster::SYSVAR_IndicatorState = 1;  // on
+    }
+    else  // indicator off
+    {
+        @Cluster::SYSVAR_IndicatorState = 0;  // off
+    }
+}

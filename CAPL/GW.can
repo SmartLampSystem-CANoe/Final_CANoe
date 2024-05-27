@@ -1,11 +1,13 @@
 ﻿/*@!Encoding:65001*/
+
 includes
 {
-  
+    #include "forwardingPCANMsg.cin"
+    #include "forwardingCCANMsg.cin"
+    #include "forwardingBCANMsg.cin"
 }
 
 variables
 {
-  
-}
 
+}

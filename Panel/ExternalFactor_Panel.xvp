@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="ExternalFactor_Panel">
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" Children="Controls" ControlName="Static Text 6">
+      <Property Name="Name">StaticTextControl6</Property>
+      <Property Name="Size">39, 12</Property>
+      <Property Name="Location">122, 118</Property>
+      <Property Name="Text">Center</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" Children="Controls" ControlName="Static Text 5">
+      <Property Name="Name">StaticTextControl5</Property>
+      <Property Name="Size">32, 12</Property>
+      <Property Name="Location">174, 118</Property>
+      <Property Name="Text">Right</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="Static Text 4">
+      <Property Name="Name">StaticTextControl4</Property>
+      <Property Name="Size">25, 12</Property>
+      <Property Name="Location">81, 118</Property>
+      <Property Name="Text">Left</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Static Text 3">
+      <Property Name="Name">StaticTextControl3</Property>
+      <Property Name="Size">39, 12</Property>
+      <Property Name="Location">24, 117</Property>
+      <Property Name="Text">no car</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="Static Text 2">
+      <Property Name="Name">StaticTextControl2</Property>
+      <Property Name="Size">108, 12</Property>
+      <Property Name="Location">290, 126</Property>
+      <Property Name="Text">External Light State</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="TrackBarControl2" Children="Controls" ControlName="Track Bar 2">
+      <Property Name="Name">TrackBarControl2</Property>
+      <Property Name="Size">138, 47</Property>
+      <Property Name="Location">270, 90</Property>
+      <Property Name="MaximumSize">100000, 47</Property>
+      <Property Name="Maximum">100</Property>
+      <Property Name="LargeChange">1</Property>
+      <Property Name="LargeChangeDouble">1</Property>
+      <Property Name="MaximumDouble">100</Property>
+      <Property Name="SymbolConfiguration">8;16;Lamp;;;SYSVAR_ExtLightState;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text 1">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">124, 12</Property>
+      <Property Name="Location">54, 142</Property>
+      <Property Name="Text">Preceding Car Postion</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="TrackBarControl1" Children="Controls" ControlName="Track Bar 1">
+      <Property Name="Name">TrackBarControl1</Property>
+      <Property Name="Size">175, 47</Property>
+      <Property Name="Location">31, 90</Property>
+      <Property Name="MaximumSize">100000, 47</Property>
+      <Property Name="Maximum">3</Property>
+      <Property Name="LargeChange">1</Property>
+      <Property Name="LargeChangeDouble">1</Property>
+      <Property Name="MaximumDouble">3</Property>
+      <Property Name="SymbolConfiguration">8;16;ExtFactor;;;SYSVAR_PrecedingCarPos;1;;;-1;;;;;;0</Property>
+      <Property Name="TabIndex">0</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">580, 270</Property>
+    <Property Name="BackColor">White</Property>
+  </Object>
+</Panel>

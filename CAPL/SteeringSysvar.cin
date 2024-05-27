@@ -1,0 +1,6 @@
+﻿/*@!Encoding:65001*/
+
+on sysvar Steering::SYSVAR_SteeringWheelAngle
+{
+    @Panel::SYSVAR_SteeringWheelState = (@this / 90) * 90;
+}
