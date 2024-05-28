@@ -41,6 +41,9 @@ VAL_TABLE_ vtb_dir 1 "RIGHT" 0 "LEFT" ;
 VAL_TABLE_ vtb_TF 1 "TRUE" 0 "FALSE" ;
 
 
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
 BO_ 515 MSG_LBeamAutoAngleCtrl: 2 Cluster
  SG_ SIG_AutoLowBeamAngleBtn : 8|1@1+ (1,0) [0|1] ""  Lamp
  SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] ""  Lamp
@@ -52,7 +55,6 @@ BO_ 514 MSG_HLBeamCtrl: 2 Cluster
 
 BO_ 512 MSG_HarzardLightCtrl: 2 Cluster
  SG_ SIG_HarzardLightBtn : 8|1@1+ (1,0) [0|1] ""  Lamp
- SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] ""  Lamp
 
 BO_ 513 MSG_DirLampCtrl: 8 Cluster
  SG_ SIG_IndicatorTime : 2|1@1+ (1,0) [0|1] ""  Lamp
@@ -73,6 +75,7 @@ BO_ 768 MSG_VehicleSpeedInfo: 2 GW
 
 
 
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
 BA_DEF_  "MultiplexExtEnabled" ENUM  "No","Yes";
 BA_DEF_  "BusType" STRING ;
 BA_DEF_ BU_  "NodeLayerModules" STRING ;

@@ -7,13 +7,17 @@ includes
 
 variables
 {
+    msTimer t_10ms;
     msTimer t_100ms;
     
+    message ADAS_DB::MSG_RealSpeed msg_RealSpeed;
+    message ADAS_DB::MSG_AccelPedal msg_AccelPedal;
     message BCAN_DB::MSG_VehicleSpeedInfo msg_VehicleSpeedInfo;
 }
 
 on start
 {
+    setTimerCyclic(t_10ms, 10);
     setTimerCyclic(t_100ms, 100);
 }
 
@@ -21,6 +25,12 @@ on start
 /*---------------------------------------------------------------------------------------
 ----------------------------- gateway forwards PCAN messages ----------------------------
 ---------------------------------------------------------------------------------------*/
+on timer t_10ms
+{
+    forwardMsg(msg_RealSpeed,  4);
+    forwardMsg(msg_AccelPedal, 4);
+}
+
 on timer t_100ms
 {
     forwardMsg(msg_VehicleSpeedInfo, 3);
@@ -49,4 +59,36 @@ on message can1.PCAN_DB::MSG_VehicleSpeedInfo
     
     msg_VehicleSpeedInfo.SIG_Crc = this.SIG_Crc;
     msg_VehicleSpeedInfo.SIG_VehicleSpeed = this.SIG_VehicleSpeed;
+    
+    msg_RealSpeed.SIG_VehicleSpeed = this.SIG_VehicleSpeed;
+    msg_RealSpeed.SIG_Depending = this.SIG_Crc;
+}
+
+on message can1.PCAN_DB::MSG_AccelPedalInfo
+{
+    // CRC check
+    byte data[1];
+    data[0] = this.byte(1);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return;
+    }
+    
+    // data range check
+    if ((this.SIG_AccelPedalPos < 0) || (this.SIG_AccelPedalPos > 100))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    if ((this.SIG_AccelPedalState != 0) && (this.SIG_AccelPedalState != 1))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    msg_AccelPedal.SIG_Depending = this.SIG_Crc;
+    msg_AccelPedal.SIG_PushAccel = this.SIG_AccelPedalState;
+    msg_AccelPedal.SIG_AccelRatio = this.SIG_AccelPedalPos;
 }

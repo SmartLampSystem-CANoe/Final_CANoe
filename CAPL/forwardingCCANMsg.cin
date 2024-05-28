@@ -7,14 +7,17 @@ includes
 
 variables
 {
+    msTimer _t_10ms;
     msTimer t_50ms;
     
+    message ADAS_DB::MSG_BrakePedal msg_BrakePedal;
     message BCAN_DB::MSG_BrakePedalInfo    msg_BrakePedalInfo;
     message BCAN_DB::MSG_SteeringWheelInfo msg_SteeringWheelInfo;
 }
 
 on start
 {
+    setTimerCyclic(_t_10ms, 10);
     setTimerCyclic(t_50ms, 50);
 }
 
@@ -22,6 +25,11 @@ on start
 /*---------------------------------------------------------------------------------------
 ----------------------------- gateway forwards CCAN messages ----------------------------
 ---------------------------------------------------------------------------------------*/
+on timer _t_10ms
+{
+    forwardMsg(msg_BrakePedal, 4);
+}
+
 on timer t_50ms
 {
     forwardMsg(msg_BrakePedalInfo, 3);
@@ -35,6 +43,8 @@ on message can2.CCAN_DB::MSG_BrakePedalInfo
 {
     // CRC check
     byte data[1];
+    dword crc_data;
+    
     data[0] = this.byte(1);
     if (checkCRC(this, data) == 0)
     {
@@ -55,8 +65,17 @@ on message can2.CCAN_DB::MSG_BrakePedalInfo
         return;
     }
     
-    msg_BrakePedalInfo.SIG_Crc = this.SIG_Crc;
     msg_BrakePedalInfo.SIG_BrakePedalState = this.SIG_BrakePedalPress;
+    
+    data[0] = msg_BrakePedalInfo.SIG_BrakePedalState;
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, 
+    crc_data);
+    
+    msg_BrakePedalInfo.SIG_Crc = crc_data;
+    
+    msg_BrakePedal.SIG_Depending  = this.SIG_Crc;
+    msg_BrakePedal.SIG_PushBrake  = this.SIG_BrakePedalPress;
+    msg_BrakePedal.SIG_BrakeRatio = this.SIG_BrakePedalPos;
 }
 
 on message can2.CCAN_DB::MSG_SteeringWheelInfo

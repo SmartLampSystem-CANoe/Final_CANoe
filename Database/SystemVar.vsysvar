@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<systemvariables version="4">
+  <namespace name="" comment="" interface="">
+    <namespace name="Brake" comment="" interface="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="%" name="SYSVAR_BrakePedalPos" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="100" maxValuePhys="100" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_BrakePedalState" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+    </namespace>
+    <namespace name="Cluster" comment="" interface="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_AutoLBeamAngleBtn" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_FLampMode" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="10" maxValuePhys="10" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_HarzardLightBtn" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_HBeamAngleDial" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3" maxValuePhys="3" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_IndicatorDir" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_IndicatorState" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_IndicatorTime" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+    </namespace>
+    <namespace name="Engine" comment="" interface="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="%" name="SYSVAR_AccelPedalPos" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="100" maxValuePhys="100" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_AccelPedalState" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="km/h" name="SYSVAR_VehicleSpeed" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="250" maxValuePhys="250" />
+    </namespace>
+    <namespace name="ExtFactor" comment="" interface="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_PrecedingCarPos" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3" maxValuePhys="3" />
+    </namespace>
+    <namespace name="Lamp" comment="" interface="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_AutoLBeamAngleState" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_BrakeLamp" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_ExtLightState" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="100" maxValuePhys="100" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_FLampMode" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="10" maxValuePhys="10" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_HarzardLight" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_HBeamAngle" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="3" maxValuePhys="3" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_IndicatorDir" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="1" minValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_LeftDirLamp" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_LeftHBeamState" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_LowBeamAngle" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="-5" minValuePhys="-5" maxValue="5" maxValuePhys="5" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_LowBeamState" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_RightDirLamp" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_RightHBeamState" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_SteeringWheelAngle" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="-540" minValuePhys="-540" maxValue="540" maxValuePhys="540" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_VehicleSpeed" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="250" maxValuePhys="250" />
+    </namespace>
+    <namespace name="Panel" comment="" interface="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_DirLeverLong" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="2" maxValuePhys="2" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_LeftDirLeverShort" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_LeverDial" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="2" maxValuePhys="2" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_LeverPushPull" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="1" minValue="0" minValuePhys="0" maxValue="2" maxValuePhys="2" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_LeverState" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="4" maxValuePhys="4" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_RightDirLeverShort" comment="" bitcount="32" isSigned="false" encoding="65001" type="int" startValue="0" minValue="0" minValuePhys="0" maxValue="1" maxValuePhys="1" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SYSVAR_SteeringWheelState" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
+    </namespace>
+    <namespace name="Steering" comment="" interface="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="degree" name="SYSVAR_SteeringWheelAngle" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" startValue="0" minValue="-540" minValuePhys="-540" maxValue="540" maxValuePhys="540" />
+    </namespace>
+  </namespace>
+</systemvariables>

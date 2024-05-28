@@ -10,6 +10,7 @@ on start
     setTimerCyclic(timer_100ms, 100);    
 }
 
+/*
 on timer timer_100ms
 {
     if (@Engine::SYSVAR_AccelPedalPos > @Brake::SYSVAR_BrakePedalPos)
@@ -28,6 +29,7 @@ on timer timer_100ms
     @Engine::SYSVAR_VehicleSpeed = (@Engine::SYSVAR_VehicleSpeed > 250) ? 250 : @Engine::SYSVAR_VehicleSpeed;
     @Engine::SYSVAR_VehicleSpeed = (@Engine::SYSVAR_VehicleSpeed < 0) ? 0 : @Engine::SYSVAR_VehicleSpeed;
 }
+*/
 
 on sysvar Engine::SYSVAR_AccelPedalPos
 {
