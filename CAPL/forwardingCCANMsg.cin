@@ -13,10 +13,10 @@ variables
     message BCAN_DB::MSG_SteeringWheelInfo msg_SteeringWheelInfo;
 }
 
-on start
-{
-    setTimerCyclic(t_50ms, 50);
-}
+//on start
+//{
+//    setTimerCyclic(t_50ms, 50);
+//}
 
 
 /*---------------------------------------------------------------------------------------
@@ -33,6 +33,7 @@ on timer t_50ms
 ---------------------------------------------------------------------------------------*/
 on message can2.CCAN_DB::MSG_BrakePedalInfo
 {
+    dword crc_data;
     // CRC check
     byte data[1];
     data[0] = this.byte(1);
@@ -55,8 +56,12 @@ on message can2.CCAN_DB::MSG_BrakePedalInfo
         return;
     }
     
-    msg_BrakePedalInfo.SIG_Crc = this.SIG_Crc;
     msg_BrakePedalInfo.SIG_BrakePedalState = this.SIG_BrakePedalPress;
+    
+    data[0] = msg_BrakePedalInfo.SIG_BrakePedalState;
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
+    
+    msg_BrakePedalInfo.SIG_Crc = crc_data;
 }
 
 on message can2.CCAN_DB::MSG_SteeringWheelInfo

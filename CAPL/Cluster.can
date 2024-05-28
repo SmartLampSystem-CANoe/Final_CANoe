@@ -11,7 +11,7 @@ variables
 
 on sysvar Cluster::SYSVAR_IndicatorState
 {
-    message BCAN::MSG_DirLampCtrl msg;
+    message BCAN_DB::MSG_DirLampCtrl msg;
     
     msg.SIG_IndicatorState = @this;
     msg.SIG_IndicatorDir   = @Cluster::SYSVAR_IndicatorDir;

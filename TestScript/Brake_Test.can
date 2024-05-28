@@ -1,0 +1,42 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+testcase sendBrakePedalInfo_Test() 
+{
+  
+  //pos
+  @sysvar::Brake::SYSVAR_BrakePedalPos = 0;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", SIG_BrakePedalPos, 0);
+  
+  @sysvar::Brake::SYSVAR_BrakePedalPos = 50;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", SIG_BrakePedalPos, 50);
+  
+  @sysvar::Brake::SYSVAR_BrakePedalPos = 100;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", SIG_BrakePedalPos, 100);
+  
+  //state
+  @sysvar::Brake::SYSVAR_BrakePedalState = 0;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", SIG_BrakePedalPress, 0);
+  
+  @sysvar::Brake::SYSVAR_BrakePedalState = 1;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", SIG_BrakePedalPress, 1);
+}
+
+void MainTest()
+{
+  sendBrakePedalInfo_Test();
+}
+

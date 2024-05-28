@@ -1,0 +1,52 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  #include "../CAPL/forward.cin"
+}
+
+variables
+{
+  message can1.PCAN_DB::MSG_VehicleSpeedInfo send;
+  message can3.BCAN::MSG_VehicleSpeedInfo recv;
+  byte data[1];
+  dword crc_data; 
+  int crcResult;
+}
+
+testcase checkCRC_Test() 
+{  
+  // 동일한 값
+  send.SIG_VehicleSpeed = 100;
+  data[0] = send.byte(1);
+  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
+  send.SIG_Crc = crc_data;
+  
+  recv.SIG_VehicleSpeed = send.byte(1);
+  data[0] = recv.byte(1);
+  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
+  recv.SIG_Crc = crc_data;
+  
+  @Test::crcResult = checkCRC(send, data);
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", sysvar::Test::crcResult, 1);
+  
+  // 다른 값
+  send.SIG_VehicleSpeed = 100;
+  data[0] = send.byte(1);
+  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
+  send.SIG_Crc = crc_data;
+  
+  recv.SIG_VehicleSpeed = 80;
+  data[0] = recv.byte(1);
+  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
+  recv.SIG_Crc = crc_data;
+  
+  @Test::crcResult = checkCRC(send, data);
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", sysvar::Test::crcResult, 0);
+}
+
+void MainTest() 
+{
+  checkCRC_Test();
+}

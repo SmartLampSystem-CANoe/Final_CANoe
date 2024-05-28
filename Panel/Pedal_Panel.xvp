@@ -64,7 +64,7 @@
     <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Static Text 3">
       <Property Name="Name">StaticTextControl3</Property>
       <Property Name="Size">74, 12</Property>
-      <Property Name="Location">104, 225</Property>
+      <Property Name="Location">83, 180</Property>
       <Property Name="Text">Speedometer</Property>
     </Object>
     <Object Type="Vector.CANalyzer.Panels.Design.AnalogGaugeControl, Vector.CANalyzer.Panels.AnalogGauge, Version=17.3.91.0, Culture=neutral, PublicKeyToken=null" Name="AnalogGaugeControl1" ControlName="Analog Gauge 1">

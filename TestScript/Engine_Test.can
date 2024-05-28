@@ -1,0 +1,58 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+testcase sendVehicleSpeedInfo_Test() 
+{
+  //speed
+  @sysvar::Engine::SYSVAR_VehicleSpeed = 0;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", PCAN_DB::MSG_VehicleSpeedInfo::SIG_VehicleSpeed, 0);
+  
+  @sysvar::Engine::SYSVAR_VehicleSpeed = 80;
+  testWaitForTimeout(10);
+  testValidateSignalMatch("", PCAN_DB::MSG_VehicleSpeedInfo::SIG_VehicleSpeed, 80);
+  
+  @sysvar::Engine::SYSVAR_VehicleSpeed = 250;
+  testWaitForTimeout(10);
+  testValidateSignalMatch("", PCAN_DB::MSG_VehicleSpeedInfo::SIG_VehicleSpeed, 250);
+}
+
+testcase sendAccelPedalInfo_Test() 
+{
+  //pos
+  @sysvar::Engine::SYSVAR_AccelPedalPos = 0;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", PCAN_DB::Engine::MSG_AccelPedalInfo::SIG_AccelPedalPos, 0);
+  
+  @sysvar::Engine::SYSVAR_AccelPedalPos = 50;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", PCAN_DB::Engine::MSG_AccelPedalInfo::SIG_AccelPedalPos, 50);
+  
+  @sysvar::Engine::SYSVAR_AccelPedalPos = 100;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", PCAN_DB::Engine::MSG_AccelPedalInfo::SIG_AccelPedalPos, 100);
+  
+  //state
+  @sysvar::Engine::SYSVAR_AccelPedalState = 0;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", PCAN_DB::Engine::MSG_AccelPedalInfo::SIG_AccelPedalState, 0);
+  
+  @sysvar::Engine::SYSVAR_AccelPedalState  = 1;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", PCAN_DB::Engine::MSG_AccelPedalInfo::SIG_AccelPedalState, 1);
+}
+
+void MainTest()
+{
+  sendVehicleSpeedInfo_Test();
+  sendAccelPedalInfo_Test();
+}
+

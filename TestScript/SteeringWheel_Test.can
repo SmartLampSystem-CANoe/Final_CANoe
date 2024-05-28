@@ -1,0 +1,39 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+testcase sendSteeringWheelInfo_Test() 
+{
+  @sysvar::Steering::SYSVAR_SteeringWheelAngle = -540;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", CCAN::Steering::MSG_SteeringWheelInfo::SIG_SteeringWheelAngle, -540);
+  
+  @sysvar::Steering::SYSVAR_SteeringWheelAngle = -300;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", CCAN::Steering::MSG_SteeringWheelInfo::SIG_SteeringWheelAngle, -300);
+  
+  @sysvar::Steering::SYSVAR_SteeringWheelAngle = 0;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", CCAN::Steering::MSG_SteeringWheelInfo::SIG_SteeringWheelAngle, 0);
+  
+  @sysvar::Steering::SYSVAR_SteeringWheelAngle = 300;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", CCAN::Steering::MSG_SteeringWheelInfo::SIG_SteeringWheelAngle, 300);
+  
+  @sysvar::Steering::SYSVAR_SteeringWheelAngle = 540;
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", CCAN::Steering::MSG_SteeringWheelInfo::SIG_SteeringWheelAngle, 540);
+}
+
+void MainTest()
+{
+  sendSteeringWheelInfo_Test();
+}
+

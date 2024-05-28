@@ -1,0 +1,87 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  //#include "../CAPL/forward.cin"
+  #include "../forwardingCCANMsg.cin"
+}
+
+variables
+{
+  //message can2.CCAN_DB::MSG_BrakePedalInfo send;
+  //message can3.BCAN_DB::MSG_BrakePedalInfo recv;
+  byte data[1];
+  dword crc_data; 
+  int crcResult;
+  
+}
+
+/*
+testcase checkCRC_Test() 
+{  
+  // 동일한 값
+  send.SIG_BrakePedalPress = 1;
+  send.SIG_BrakePedalPos = 50;
+  data[0] = send.SIG_BrakePedalPress;
+  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
+  send.SIG_Crc = crc_data;
+  
+  recv.SIG_BrakePedalState =send.SIG_BrakePedalPress;
+  data[0] = recv.byte(1);
+  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
+  recv.SIG_Crc = crc_data;
+  
+  @Test::crcResult = checkCRC(send, data);
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", sysvar::Test::crcResult, 1);
+  
+  // 다른 값
+  send.SIG_BrakePedalPress = 1;
+  send.SIG_BrakePedalPos = 50;
+  data[0] = send.byte(1);
+  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
+  send.SIG_Crc = crc_data;
+  
+  send.SIG_BrakePedalPress = 1;
+  send.SIG_BrakePedalPos = 50;
+  data[0] = recv.byte(1);
+  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
+  recv.SIG_Crc = crc_data;
+  
+  @Test::crcResult = checkCRC(send, data);
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", sysvar::Test::crcResult, 0);
+}
+*/
+
+testcase sendBrakePedalInfoCtoB_Test() 
+{  
+  message can2.CCAN_DB::MSG_BrakePedalInfo send;
+  byte data[1];
+  byte data2[1];
+  dword crc_data;
+  
+  send.SIG_BrakePedalPress = 1;
+  send.SIG_BrakePedalPos = 0;
+  
+  data[0] = send.byte(1);
+  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
+  send.SIG_Crc = crc_data;
+  output(send);
+  write("send = %d", send.SIG_BrakePedalPress);
+  
+  data2[0] = send.SIG_BrakePedalPress;
+  Crc_CalculateCRC8(data2, elcount (data2), 0, elcount (data2), 0, 1, crc_data);
+  write("%d", crc_data);
+  
+  testWaitForTimeout(10000);
+  write("recv = %d", msg_BrakePedalInfo.SIG_BrakePedalState);
+  //testValidateSignalMatch("", msg_BrakePedalInfo.SIG_BrakePedalState, crc_data);  
+  
+}
+
+void MainTest() 
+{
+  //checkCRC_Test();
+  sendBrakePedalInfoCtoB_Test();
+}
+
