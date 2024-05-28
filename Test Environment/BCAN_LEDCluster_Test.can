@@ -1,0 +1,210 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  
+  message BCAN_DB::MSG_LBeamAutoAngleCtrl msg_lbeamAutoAC;
+  const int kOFF        = 0;
+  const int kAUTO       = (1 << 0);//1
+  const int kON         = (1 << 1);//2
+  const int kHBEAM_AUTO = (1 << 2);//4
+  const int kHBEAM_ON   = (1 << 3);//8 (+ dir on +2)
+  int i, j;
+  
+ 
+}
+testcase CLUSTER_dial_state() {
+  @Panel::SYSVAR_LeverDial = 0;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", sysvar::Panel::SYSVAR_LeverPushPull, 1);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_FLampMode, kOFF);
+
+  @Panel::SYSVAR_LeverDial = 1;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_FLampMode, kAUTO);
+  
+  @Panel::SYSVAR_LeverDial = 2;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_FLampMode, kON);
+}
+testcase LeverPushPull_state() {
+  for(i=0; i<1; i++){
+    @Panel::SYSVAR_LeverPushPull = i;
+    @Panel::SYSVAR_LeverDial = kOFF;
+    testWaitForTimeout(100);
+    testValidateSignalMatch("", sysvar::Panel::SYSVAR_LeverPushPull, 1);
+  }
+  
+  @Panel::SYSVAR_LeverDial = kON;//or KAUTO, KHBEAM_AUTO, KHBEAM_ON
+  @Panel::SYSVAR_LeverPushPull = 0;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_FLampMode, (kHBEAM_AUTO)+2 );
+  
+  @Panel::SYSVAR_LeverDial = kHBEAM_AUTO;
+  @Panel::SYSVAR_LeverPushPull = 1;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_FLampMode, kON);
+  
+  @Panel::SYSVAR_LeverDial = kON;
+  @Panel::SYSVAR_LeverPushPull = 2;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_FLampMode, kHBEAM_ON+2);
+}
+
+testcase DirLeverLong_state(){
+  @Panel::SYSVAR_DirLeverLong = 2;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", SIG_IndicatorDir, 1);
+  testValidateSignalMatch("", SIG_IndicatorTime, 1);
+  testValidateSignalMatch("", SIG_IndicatorState, 1);  
+  
+  @Panel::SYSVAR_DirLeverLong = 1;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", SIG_IndicatorState, 0);
+  
+  @Panel::SYSVAR_DirLeverLong = 0;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", SIG_IndicatorDir, 0);
+  testValidateSignalMatch("", SIG_IndicatorTime, 1);
+  testValidateSignalMatch("", SIG_IndicatorState, 1); 
+  
+  @Panel::SYSVAR_DirLeverLong = 1;//init
+}
+
+testcase DirLeverShort_state(){
+  @Panel::SYSVAR_LeftDirLeverShort =1;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_IndicatorDir, 0);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_IndicatorTime, 0);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_IndicatorState, 1); 
+  
+  @Panel::SYSVAR_LeftDirLeverShort = 0;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_IndicatorState, 0);
+  
+  @Panel::SYSVAR_RightDirLeverShort =1;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_IndicatorDir, 1);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_IndicatorTime, 0);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_IndicatorState, 1); 
+  
+  @Panel::SYSVAR_RightDirLeverShort = 0;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", sysvar::Cluster::SYSVAR_IndicatorState, 0);
+}
+
+testcase INdicatorState_TEST() { 
+    //----(on sysvar Panel::SYSVAR_DirLeverLong) and (Cluster::SYSVAR_IndicatorState) intergration test ----
+    @Panel::SYSVAR_DirLeverLong = 2; //==@Cluster::SYSVAR_IndicatorState = 1;
+    testWaitForTimeout(100);
+    testValidateSignalMatch("", SIG_IndicatorDir, 1);
+    testValidateSignalMatch("", SIG_IndicatorTime, 1);
+    testValidateSignalMatch("", SIG_IndicatorState, 1);
+  
+    @Panel::SYSVAR_DirLeverLong = 1;//==@Cluster::SYSVAR_IndicatorState = 0;
+    testWaitForTimeout(100);
+    testValidateSignalMatch("", SIG_IndicatorDir, 1);
+    testValidateSignalMatch("", SIG_IndicatorState, 0) ;
+  
+    @Panel::SYSVAR_DirLeverLong = 0; //==@Cluster::SYSVAR_IndicatorState = 1;
+    testWaitForTimeout(100);
+    testValidateSignalMatch("", SIG_IndicatorDir, 0);
+    testValidateSignalMatch("", SIG_IndicatorTime, 1);
+    testValidateSignalMatch("", SIG_IndicatorState, 1);
+  
+    @Panel::SYSVAR_DirLeverLong = 1; //INIT
+    //------------------------------------------------------------------------------------------------------
+  
+    //----(on sysvar Panel::SYSVAR_LeftDirLeverShort) and (Cluster::SYSVAR_IndicatorState) intergration test ----
+    @Panel::SYSVAR_LeftDirLeverShort = 1;//==@Cluster::SYSVAR_IndicatorState = 1;
+    testWaitForTimeout(100);
+    testValidateSignalMatch("", SIG_IndicatorDir, 0);
+    testValidateSignalMatch("", SIG_IndicatorTime, 0);
+    testValidateSignalMatch("", SIG_IndicatorState, 1);
+  
+    @Panel::SYSVAR_LeftDirLeverShort = 0;//==@Cluster::SYSVAR_IndicatorState = 0;
+    testWaitForTimeout(100);
+    testValidateSignalMatch("", SIG_IndicatorState, 0);
+    //------------------------------------------------------------------------------------------------------
+  
+    //----(on sysvar Panel::SYSVAR_RightDirLeverShort) and (Cluster::SYSVAR_IndicatorState) intergration test ----
+    @Panel::SYSVAR_RightDirLeverShort = 1; //==@Cluster::SYSVAR_IndicatorState = 1;
+    testWaitForTimeout(100);
+    testValidateSignalMatch("", SIG_IndicatorDir, 1);
+    testValidateSignalMatch("", SIG_IndicatorTime, 0);
+    testValidateSignalMatch("", SIG_IndicatorState, 1);
+  
+    @Panel::SYSVAR_RightDirLeverShort = 0; //==@Cluster::SYSVAR_IndicatorState = 0;
+    testWaitForTimeout(100);
+    testValidateSignalMatch("", SIG_IndicatorState, 0);
+    //------------------------------------------------------------------------------------------------------
+}
+
+testcase HarzardLightBtn_Test() {
+  @Cluster::SYSVAR_HarzardLightBtn = 1;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", SIG_HarzardLightBtn, 1);
+  
+  @Cluster::SYSVAR_HarzardLightBtn = 0;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", SIG_HarzardLightBtn, 0);
+}
+
+testcase FLampMode_Test() {
+  message BCAN_DB::MSG_HLBeamCtrl msg_flampMode;
+  for(i=10; i>=0; i--){
+    for(j=3; j>=0; j--){     
+    @Cluster::SYSVAR_FLampMode = i;//1010
+    testWaitForTimeout(20);
+    testValidateSignalMatch("", SIG_HLBeamMode, i);
+    
+    @Cluster::SYSVAR_HBeamAngleDial = j;//11 10 01 00
+    testWaitForTimeout(20);
+    testValidateSignalMatch("", SIG_HBeamAngle, j);
+   /*
+    data[0] = msg_flampMode.byte(1);
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc0);
+    msg_flampMode.SIG_Crc = crc0;
+    testWaitForTimeout(100);
+    //testValidateSignalMatch("", sysvar::Test::crcResult, 1);
+    //testWaitForTimeout(100);
+    //testValidateSignalMatch("", msg_flampMode.byte(1), data1[0]);
+    testValidateSignalMatch("", MSG_HLBeamCtrl::SIG_Crc, crc0);*/
+    }
+  }
+}
+
+testcase CLUSTER_HBeamAngleDial(){
+  FLampMode_Test();
+}
+
+testcase CLUSTER_AutoLBeamAngleBtn(){
+  @Cluster::SYSVAR_AutoLBeamAngleBtn = 0;//error test
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", SIG_AutoLowBeamAngleBtn, 0);
+  
+  @Cluster::SYSVAR_AutoLBeamAngleBtn = 1;
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", SIG_AutoLowBeamAngleBtn, 1);
+  
+  @Cluster::SYSVAR_AutoLBeamAngleBtn = 0;//error test
+  testWaitForTimeout(100);
+  testValidateSignalMatch("", SIG_AutoLowBeamAngleBtn, 1);
+}
+
+void MainTest() {
+//  CLUSTER_dial_state();
+//  LeverPushPull_state();
+//  DirLeverLong_state();
+//  DirLeverShort_state();
+  
+//  INdicatorState_TEST(); 
+//  HarzardLightBtn_Test();
+  FLampMode_Test();
+  //CLUSTER_HBeamAngleDial();
+  CLUSTER_AutoLBeamAngleBtn();
+}

@@ -1,0 +1,50 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  
+  message BCAN_DB::MSG_VehicleSpeedInfo msg_BVehicleSpeedInfo;
+  message PCAN_DB::MSG_VehicleSpeedInfo msg_PVehicleSpeedInfo;
+  byte data[1];
+  dword crc;
+  int i, j;
+}
+
+
+testcase BrakePedalInfo(){
+  message CCAN_DB::MSG_BrakePedalInfo msg_CBrakePedalInfo; //Intergration Test
+  msg_CBrakePedalInfo.can = 2;
+  msg_CBrakePedalInfo.dlc = 2;
+  msg_CBrakePedalInfo.rtr = 0;
+  for(i=50; i<0; i-=10){
+    for(j=1; j<0; j--){
+      msg_CBrakePedalInfo.SIG_BrakePedalPos.phys = i;
+      msg_CBrakePedalInfo.SIG_BrakePedalPress.phys = j;
+        output(msg_CBrakePedalInfo);
+        testWaitForTimeout(500);
+        testValidateSignalMatch("", SIG_BrakePedalState, @Lamp::SYSVAR_BrakeLamp);
+    }
+  }
+}
+
+testcase VSI() {
+  msg_PVehicleSpeedInfo.can = 1;
+  msg_PVehicleSpeedInfo.SIG_VehicleSpeed = 100;
+  output(msg_PVehicleSpeedInfo);
+  data[0] = msg_PVehicleSpeedInfo.byte(1);
+  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
+  
+  testWaitForTimeout(1000);
+  testValidateSignalMatch("", BCAN::GW::MSG_VehicleSpeedInfo::SIG_Crc, crc);
+  testValidateSignalMatch("", BCAN::GW::MSG_VehicleSpeedInfo::SIG_VehicleSpeed, 100);
+}
+
+
+void MainTest(){
+  //VSI();
+  BrakePedalInfo();
+}
