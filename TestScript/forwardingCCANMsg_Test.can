@@ -1,8 +1,7 @@
 ﻿/*@!Encoding:65001*/
 includes
 {
-  //#include "../CAPL/forward.cin"
-  #include "../forwardingCCANMsg.cin"
+  #include "../CAPL/forwardingCCANMsg.cin"
 }
 
 variables
@@ -67,15 +66,17 @@ testcase sendBrakePedalInfoCtoB_Test()
   Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
   send.SIG_Crc = crc_data;
   output(send);
-  write("send = %d", send.SIG_BrakePedalPress);
+  write("send = %d", send.SIG_Crc);
   
   data2[0] = send.SIG_BrakePedalPress;
   Crc_CalculateCRC8(data2, elcount (data2), 0, elcount (data2), 0, 1, crc_data);
   write("%d", crc_data);
+  msg_BrakePedalInfo.SIG_Crc = crc_data;
+  @sysvar::Test::crcResult = msg_BrakePedalInfo.SIG_Crc;
   
-  testWaitForTimeout(10000);
-  write("recv = %d", msg_BrakePedalInfo.SIG_BrakePedalState);
-  //testValidateSignalMatch("", msg_BrakePedalInfo.SIG_BrakePedalState, crc_data);  
+  testWaitForTimeout(1000);
+  write("recv = %d", msg_BrakePedalInfo.SIG_Crc);
+  testValidateSignalMatch("", sysvar::Test::crcResult, crc_data);  
   
 }
 

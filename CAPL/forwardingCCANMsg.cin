@@ -58,8 +58,8 @@ on message can2.CCAN_DB::MSG_BrakePedalInfo
     
     msg_BrakePedalInfo.SIG_BrakePedalState = this.SIG_BrakePedalPress;
     
-    data[0] = msg_BrakePedalInfo.SIG_BrakePedalState;
-    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
+    //data[0] = msg_BrakePedalInfo.SIG_BrakePedalState;
+    //Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
     
     msg_BrakePedalInfo.SIG_Crc = crc_data;
 }
