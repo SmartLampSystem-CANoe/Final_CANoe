@@ -37,6 +37,11 @@ BU_: GW Engine
 VAL_TABLE_ VT_PCAN_Boolean 1 "TRUE" 0 "FALSE" ;
 
 
+BO_ 257 MSG_AccEngineCtrl: 6 GW
+ SG_ SIG_AccEnginePower : 9|32@1- (1,0) [-3.4E+038|3.4E+038] ""  Engine
+ SG_ SIG_AccMode : 8|1@1+ (1,0) [0|1] ""  Engine
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] ""  Engine
+
 BO_ 256 MSG_AccelPedalInfo: 2 Engine
  SG_ SIG_AccelPedalPos : 8|7@1+ (1,0) [0|100] "%"  GW
  SG_ SIG_AccelPedalState : 15|1@1+ (1,0) [0|1] ""  GW
@@ -65,4 +70,5 @@ BA_DEF_DEF_  "CANoeJitterMin" 0;
 BA_DEF_DEF_  "CANoeDrift" 0;
 BA_DEF_DEF_  "CANoeStartDelay" 0;
 VAL_ 256 SIG_AccelPedalState 1 "TRUE" 0 "FALSE" ;
+SIG_VALTYPE_ 257 SIG_AccEnginePower : 1;
 

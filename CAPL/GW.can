@@ -5,6 +5,7 @@ includes
     #include "forwardingPCANMsg.cin"
     #include "forwardingCCANMsg.cin"
     #include "forwardingBCANMsg.cin"
+    #include "forwardingADASMsg.cin"
 }
 
 variables

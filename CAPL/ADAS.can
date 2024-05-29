@@ -6,6 +6,32 @@ includes
 
 variables
 {
-  
+  msTimer t_5ms;
 }
 
+on start
+{
+    setTimerCyclic(t_5ms, 5);
+}
+
+on timer t_5ms
+{
+    message ADAS_DB::MSG_AccEngineCtrl msg;
+    byte data[5];
+    dword crc;
+    
+    msg.can = 4;
+    msg.SIG_AccMode     = @ADAS::SYSVAR_AccMode;
+    msg.SIG_EnginePower = @ADAS::SYSVAR_EnginePower;
+    
+    data[4] = msg.byte(1);
+    data[3] = msg.byte(2);
+    data[2] = msg.byte(3);
+    data[1] = msg.byte(4);
+    data[0] = msg.byte(5);
+    
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
+    msg.SIG_Depending = crc;
+    
+    output(msg);
+}

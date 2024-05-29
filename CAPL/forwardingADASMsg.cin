@@ -1,28 +1,26 @@
 ﻿/*@!Encoding:65001*/
 includes
 {
-    #include "EngineMsgSend.cin"
-    #include "EngineSysvar.cin"
     #include "forward.cin"
 }
-
 variables
 {
-    mstimer t_10ms;
+    message PCAN_DB::MSG_AccEngineCtrl msg_AccEngineCtrl;
+    
+    msTimer t_5ms;
 }
 
 on start
 {
-    setTimerCyclic(t_10ms, 10);
+    setTimerCyclic(t_5ms, 5);
 }
 
-on timer t_10ms
+on timer t_5ms
 {
-    sendVehicleSpeedInfo();
-    sendAccelPedalInfo();
+    forwardMsg(msg_AccEngineCtrl, 1);
 }
 
-on message can1.PCAN_DB::MSG_AccEngineCtrl
+on message can4.ADAS_DB::MSG_AccEngineCtrl
 {
     // CRC check
     byte data[5];
@@ -44,12 +42,17 @@ on message can1.PCAN_DB::MSG_AccEngineCtrl
         return;
     }
     
-    if ((this.SIG_AccEnginePower > 150.0) || (this.SIG_AccEnginePower < 0.0))
+    if ((this.SIG_EnginePower > 150.0) || (this.SIG_EnginePower < 0.0))
     {
         write("CAN%d.%s Error: Invalid Data", this.can, this.name);
         return;
     }
     
-    @Engine::SYSVAR_AccMode = this.SIG_AccMode;
-    @Engine::SYSVAR_EnginPower = this.SIG_AccEnginePower;
+    {
+        int i;
+        for (i = 0; i < this.dlc; i++)
+        {
+            msg_AccEngineCtrl.byte(i) = this.byte(i);
+        }
+    }
 }
