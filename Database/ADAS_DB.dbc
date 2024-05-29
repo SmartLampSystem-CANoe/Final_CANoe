@@ -36,6 +36,10 @@ BS_:
 BU_: ADASM GatewayA
 
 
+BO_ 768 MSG_ObjectDetection: 2 ADASM
+ SG_ SIG_PrecedingCarPos : 8|2@1+ (1,0) [0|3] ""  GatewayA
+ SG_ SIG_Depending : 0|8@1+ (1,0) [0|255] ""  GatewayA
+
 BO_ 0 MSG_AccEngineCtrl: 6 ADASM
  SG_ SIG_EnginePower : 9|32@1- (1,0) [-3.4E+038|3.4E+038] ""  GatewayA
  SG_ SIG_AccMode : 8|1@1+ (1,0) [0|1] ""  GatewayA

@@ -1,7 +1,7 @@
 
 %name = 'tiny-yolov3-coco';
-%detector = yolov3ObjectDetector(name);
-img = imread('C:\Users\user\Pictures\Screenshots\center-night-HB.png');
+detector = yolov3ObjectDetector(name);
+img = imread('C:\Users\user\Pictures\Screenshots\left-night-LB.png');
 img = preprocess(detector,img);
 img = im2single(img);
 [bboxes,scores,labels] = detect(detector,img,'DetectionPreprocessing','none');

@@ -5,19 +5,26 @@ includes
 }
 variables
 {
-    message PCAN_DB::MSG_AccEngineCtrl msg_AccEngineCtrl;
-    
+    message PCAN_DB::MSG_AccEngineCtrl   msg_AccEngineCtrl;
+    message BCAN_DB::MSG_ObjectDetection msg_ObjectDetection;
     msTimer t_5ms;
+    msTimer t_500ms;
 }
 
 on start
 {
     setTimerCyclic(t_5ms, 5);
+    setTimerCyclic(t_500ms, 500);
 }
 
 on timer t_5ms
 {
     forwardMsg(msg_AccEngineCtrl, 1);
+}
+
+on timer t_500ms
+{
+    forwardMsg(msg_ObjectDetection, 3);
 }
 
 on message can4.ADAS_DB::MSG_AccEngineCtrl
@@ -55,4 +62,26 @@ on message can4.ADAS_DB::MSG_AccEngineCtrl
             msg_AccEngineCtrl.byte(i) = this.byte(i);
         }
     }
+}
+
+on message can4.ADAS_DB::MSG_ObjectDetection
+{
+    // CRC check
+    byte data[1];
+    data[0] = this.byte(1);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return; 
+    }
+
+    // data range check
+    if ((this.SIG_PrecedingCarPos < 0) && (this.SIG_PrecedingCarPos > 3))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    msg_ObjectDetection.SIG_Crc = this.SIG_Depending;
+    msg_ObjectDetection.SIG_PrecedingCarPos = this.SIG_PrecedingCarPos;
 }

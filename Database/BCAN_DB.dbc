@@ -44,6 +44,10 @@ VAL_TABLE_ vtb_TF 1 "TRUE" 0 "FALSE" ;
 BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
  SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] "" Vector__XXX
 
+BO_ 256 MSG_ObjectDetection: 2 GW
+ SG_ SIG_PrecedingCarPos : 8|2@1+ (1,0) [0|3] ""  Lamp
+ SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] ""  Lamp
+
 BO_ 515 MSG_LBeamAutoAngleCtrl: 2 Cluster
  SG_ SIG_AutoLowBeamAngleBtn : 8|1@1+ (1,0) [0|1] ""  Lamp
  SG_ SIG_Crc : 0|8@1+ (1,0) [0|255] ""  Lamp

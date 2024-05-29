@@ -6,12 +6,14 @@ includes
 
 variables
 {
-  msTimer t_5ms;
+    msTimer t_5ms;
+    msTimer t_500ms;
 }
 
 on start
 {
     setTimerCyclic(t_5ms, 5);
+    setTimerCyclic(t_500ms, 500);
 }
 
 on timer t_5ms
@@ -29,6 +31,23 @@ on timer t_5ms
     data[2] = msg.byte(3);
     data[1] = msg.byte(4);
     data[0] = msg.byte(5);
+    
+    Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
+    msg.SIG_Depending = crc;
+    
+    output(msg);
+}
+
+on timer t_500ms
+{
+    message ADAS_DB::MSG_ObjectDetection msg;
+    byte data[1];
+    dword crc;
+    
+    msg.can = 4;
+    msg.SIG_PrecedingCarPos = @ADAS::SYSVAR_PrecedingCarPos;
+    
+    data[0] = msg.byte(1);
     
     Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
     msg.SIG_Depending = crc;

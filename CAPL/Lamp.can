@@ -260,3 +260,24 @@ on message can3.BCAN_DB::MSG_LBeamAutoAngleCtrl
         @Lamp::SYSVAR_AutoLBeamAngleState = 1;
     }
 }
+
+on message can3.BCAN_DB::MSG_ObjectDetection
+{
+    // CRC check
+    byte data[1];
+    data[0] = this.byte(1);
+    if (checkCRC(this, data) == 0)
+    {
+        write("CAN%d.%s Error: Unmatched CRC", this.can, this.name);
+        return; 
+    }
+
+    // data range check
+    if ((this.SIG_PrecedingCarPos < 0) && (this.SIG_PrecedingCarPos > 3))
+    {
+        write("CAN%d.%s Error: Invalid Data", this.can, this.name);
+        return;
+    }
+    
+    @ExtFactor::SYSVAR_PrecedingCarPos = this.SIG_PrecedingCarPos;
+}
