@@ -10,6 +10,7 @@ variables
   message PCAN_DB::MSG_VehicleSpeedInfo msg_PVehicleSpeedInfo;
   byte data[1];
   dword crc;
+  dword match;
   int i, j;
 }
 
@@ -39,10 +40,10 @@ testcase DirLampCtrl(){
         testWaitForTimeout(100);
         testValidateSignalMatch("", SIG_IndicatorDir, @Lamp::SYSVAR_IndicatorDir);
         
-        //testValidateSignalMatch("", @sysvar::Lamp::SYSVAR_LeftDirLamp, 0);
-        //testValidateImplValue("", @sysvar::Lamp::SYSVAR_LeftDirLamp, 0);
+        testValidateSignalMatch("", sysvar::Lamp::SYSVAR_LeftDirLamp, 0);
+        testValidateSignalMatch("", sysvar::Lamp::SYSVAR_RightDirLamp, 0);
     }
-  }//@Lamp::SYSVAR_LeftDirLamp = @Lamp::SYSVAR_RightDirLamp = 0;
+  }
         
  
 }
@@ -72,7 +73,7 @@ testcase HLBeamCtrl(){
   msg_hlbCTR.dlc = 8;
   msg_hlbCTR.rtr = 0;
   msg_hlbCTR.can = 3;
-  
+    
   for(i=6;i>=0;i--){     
     for(j=0; j<4; j++){
     msg_hlbCTR.SIG_HLBeamMode.phys = arr[i]; //and 1, 2, 5, 6, 9, 10
@@ -91,60 +92,47 @@ testcase LBeamAutoAngleCtrl(){
   msg_lbaaCTL.rtr = 0;
   msg_lbaaCTL.can = 3;
   
-  
       msg_lbaaCTL.SIG_AutoLowBeamAngleBtn.phys = 0; 
       @Lamp::SYSVAR_AutoLBeamAngleState = 1;
       output(msg_lbaaCTL);
       testWaitForTimeout(100);
-      //testValidateSignalMatch("", @Lamp::SYSVAR_AutoLBeamAngleState, 0);
+      testValidateSignalMatch("", sysvar::Lamp::SYSVAR_AutoLBeamAngleState, 0);
   
-    for(i=35; i>200; i+=40){
+      for(i=36; i<200; i+=40){
       msg_lbaaCTL.SIG_AutoLowBeamAngleBtn.phys = 1; 
       @Lamp::SYSVAR_AutoLBeamAngleState = 0;
       @Lamp::SYSVAR_VehicleSpeed = i;
       output(msg_lbaaCTL);
       testWaitForTimeout(100);
-      //testValidateSignalMatch("", @Lamp::SYSVAR_AutoLBeamAngleState, 1);
+      testValidateSignalMatch("", sysvar::Lamp::SYSVAR_AutoLBeamAngleState, 1);
     }
 }
-//testcase BrakePedalInfo(){
+testcase BrakePedalInfo(){
   
-//  message CCAN_DB::MSG_BrakePedalInfo msg_CBrakePedalInfo; //Intergration Test
-//  message BCAN_DB::MSG_VehicleSpeedInfo msg_BVehicleSpeedInfo;
-//  msg_CBrakePedalInfo.can = 2; msg_BVehicleSpeedInfo.can = 3;
-//  msg_CBrakePedalInfo.dlc = 2; msg_BVehicleSpeedInfo.can = 2;
-//  msg_CBrakePedalInfo.rtr = 0; msg_BVehicleSpeedInfo.can = 0;
-//  for(i=50; i<0; i-=10){
-//    for(j=1; j<0; j--){
-//      msg_CBrakePedalInfo.SIG_BrakePedalPos.phys = i;
-//      msg_CBrakePedalInfo.SIG_BrakePedalPress.phys = j;
-//        output(msg_CBrakePedalInfo);
-//        testWaitForTimeout(500);
-//        output(msg_BVehicleSpeedInfo);
-//        testWaitForTimeout(500);
-//        testValidateSignalMatch("", SIG_BrakePedalState, @Lamp::SYSVAR_BrakeLamp);
-//    }
-//  }
+  message CCAN_DB::MSG_BrakePedalInfo msg_CBrakePedalInfo; //Intergration Test
+  message BCAN_DB::MSG_VehicleSpeedInfo msg_BVehicleSpeedInfo;
+  msg_CBrakePedalInfo.can = 2; msg_BVehicleSpeedInfo.can = 3;
+  msg_CBrakePedalInfo.dlc = 2; msg_BVehicleSpeedInfo.can = 2;
+  msg_CBrakePedalInfo.rtr = 0; msg_BVehicleSpeedInfo.can = 0;
+  for(i=50; i<0; i-=10){
+    for(j=1; j<0; j--){
+      msg_CBrakePedalInfo.SIG_BrakePedalPos.phys = i;
+      msg_CBrakePedalInfo.SIG_BrakePedalPress.phys = j;
+        output(msg_CBrakePedalInfo);
+        testWaitForTimeout(100);
+        output(msg_BVehicleSpeedInfo);
+        testWaitForTimeout(100);
+        testValidateSignalMatch("", SIG_BrakePedalState, @Lamp::SYSVAR_BrakeLamp);
+    }
+  }
   
-//}
-
-//testcase VSI() {
-//  msg_PVehicleSpeedInfo.can = 1;
-//  msg_PVehicleSpeedInfo.SIG_VehicleSpeed = 100;
-//  output(msg_PVehicleSpeedInfo);
-//  data[0] = msg_PVehicleSpeedInfo.byte(1);
-//  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc);
-  
-//  testWaitForTimeout(1000);
-//  testValidateSignalMatch("", BCAN::GW::MSG_VehicleSpeedInfo::SIG_Crc, crc);
-//  testValidateSignalMatch("", BCAN::GW::MSG_VehicleSpeedInfo::SIG_VehicleSpeed, 100);
-//}
+}
 
 
 void MainTest(){
-  //VSI();
-  //BrakePedalInfo();
+  BrakePedalInfo();
   DirLampCtrl();
-  //HarzardLightCtrl();
-  //HLBeamCtrl();
+  LBeamAutoAngleCtrl();
+  HarzardLightCtrl();
+  HLBeamCtrl();
 }

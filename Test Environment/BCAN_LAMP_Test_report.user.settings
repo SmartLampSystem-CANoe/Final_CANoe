@@ -9,14 +9,14 @@
         <value type="Vector.ReportViewer.ViewModel.ContentModels.ContentModelPersistList">
           <ArrayOfContentModelPersist>
             <ContentModelPersist d7p1:type="VisualizableNodeModelPersist" xmlns:d7p1="http://www.w3.org/2001/XMLSchema-instance">
-              <ReportUniqueId>27f2039b-c66e-4667-9a9d-30fec35d7346</ReportUniqueId>
-              <NodeName>HLBeamCtrl</NodeName>
+              <ReportUniqueId>ef785d45-3491-47aa-8ae6-99c24a4a7e3a</ReportUniqueId>
+              <NodeName>LBeamAutoAngleCtrl</NodeName>
               <NodeType>TestCase</NodeType>
-              <DbId>3</DbId>
+              <DbId>1</DbId>
               <IsTreeNode>true</IsTreeNode>
               <PathToNode>
                 <string>BCAN_LAMP_Test</string>
-                <string>HLBeamCtrl</string>
+                <string>LBeamAutoAngleCtrl</string>
               </PathToNode>
             </ContentModelPersist>
           </ArrayOfContentModelPersist>
@@ -68,8 +68,8 @@
 			&lt;/UIElement&gt;
 			&lt;UIElement xsi:type="Workspace"&gt;
 				&lt;Content xsi:type="TabbedMdiHost"&gt;
-					&lt;Content xsi:type="TabbedMdiContainer" SelectedWindowUniqueId="f6132d21-276f-4187-b8d9-e9e74a4e4b41"&gt;
-						&lt;UIElement xsi:type="DocumentWindowRef" UniqueId="f6132d21-276f-4187-b8d9-e9e74a4e4b41" /&gt;
+					&lt;Content xsi:type="TabbedMdiContainer" SelectedWindowUniqueId="c5684818-e248-4ac3-a9f9-4934d5b663d3"&gt;
+						&lt;UIElement xsi:type="DocumentWindowRef" UniqueId="c5684818-e248-4ac3-a9f9-4934d5b663d3" /&gt;
 					&lt;/Content&gt;
 				&lt;/Content&gt;
 			&lt;/UIElement&gt;
@@ -80,10 +80,10 @@
 		&lt;/UIElement&gt;
 	&lt;/Content&gt;
 	&lt;DocumentWindows&gt;
-		&lt;DocumentWindow UniqueId="f6132d21-276f-4187-b8d9-e9e74a4e4b41" SerializationId="TestCase&amp;lt;3&amp;gt;" IsOpen="true" LastActiveDateTime="2024-05-28T15:36:13.7993604+09:00" State="Document" Type="Vector.ReportViewer.UI.ContentViews.Controls.ContentViewDocumentWnd, Vector.ReportViewer.UI" /&gt;
+		&lt;DocumentWindow UniqueId="c5684818-e248-4ac3-a9f9-4934d5b663d3" SerializationId="TestCase&amp;lt;1&amp;gt;" IsOpen="true" LastActiveDateTime="2024-05-29T20:58:26.1152671+09:00" State="Document" Type="Vector.ReportViewer.UI.ContentViews.Controls.ContentViewDocumentWnd, Vector.ReportViewer.UI" /&gt;
 	&lt;/DocumentWindows&gt;
 	&lt;ToolWindows&gt;
-		&lt;ToolWindow UniqueId="68fd13a8-9907-46e5-9413-9790d5f4a126" Name="mWndExplorer" ContainerDockedSize="350,150" IsOpen="true" LastActiveDateTime="2024-05-28T15:36:09.7405339+09:00" State="Docked" /&gt;
+		&lt;ToolWindow UniqueId="68fd13a8-9907-46e5-9413-9790d5f4a126" Name="mWndExplorer" ContainerDockedSize="350,150" IsOpen="true" LastActiveDateTime="2024-05-29T20:58:22.9476706+09:00" State="Docked" /&gt;
 		&lt;ToolWindow UniqueId="db7f9d11-6872-4b60-9597-9f7a174e3ce8" Name="mWndCommentsOverview" ContainerDockedSize="350,150" IsOpen="false" State="Docked" /&gt;
 		&lt;ToolWindow UniqueId="bdce582e-5aa9-404b-8b10-09d7da3a70fa" Name="mWndReassessmentsOverview" ContainerDockedSize="350,150" IsOpen="false" State="Docked" /&gt;
 	&lt;/ToolWindows&gt;

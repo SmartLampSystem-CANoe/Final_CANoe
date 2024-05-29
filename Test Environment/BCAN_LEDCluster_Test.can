@@ -197,13 +197,13 @@ testcase CLUSTER_AutoLBeamAngleBtn(){
 }
 
 void MainTest() {
-//  CLUSTER_dial_state();
-//  LeverPushPull_state();
-//  DirLeverLong_state();
-//  DirLeverShort_state();
+  CLUSTER_dial_state();
+  LeverPushPull_state();
+  DirLeverLong_state();
+  DirLeverShort_state();
   
-//  INdicatorState_TEST(); 
-//  HarzardLightBtn_Test();
+  INdicatorState_TEST(); 
+  HarzardLightBtn_Test();
   FLampMode_Test();
   //CLUSTER_HBeamAngleDial();
   CLUSTER_AutoLBeamAngleBtn();
