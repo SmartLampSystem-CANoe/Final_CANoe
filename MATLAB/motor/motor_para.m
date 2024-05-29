@@ -11,3 +11,7 @@ PI = 3.141592;
 circumference_tyre = 2.047;
 
 ratio_reduction = 1/8;
+
+K_p = 0.3;
+K_i = 0.1;
+K_d = 0;

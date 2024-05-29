@@ -36,11 +36,6 @@ BS_:
 BU_: ADASM GatewayA
 
 
-BO_ 0 MSG_AccEngineCtrl: 6 ADASM
- SG_ SIG_EnginePower : 9|32@1- (1,0) [-3.4E+038|3.4E+038] ""  GatewayA
- SG_ SIG_AccMode : 8|1@1+ (1,0) [0|1] ""  GatewayA
- SG_ SIG_Depending : 0|8@1+ (1,0) [0|255] ""  GatewayA
-
 BO_ 517 MSG_RealSpeed: 2 GatewayA
  SG_ SIG_VehicleSpeed : 8|8@1+ (1,0) [0|250] "km/h"  ADASM
  SG_ SIG_Depending : 0|8@1+ (1,0) [0|255] ""  ADASM
@@ -73,5 +68,4 @@ BA_DEF_DEF_  "CANoeJitterMax" 0;
 BA_DEF_DEF_  "CANoeJitterMin" 0;
 BA_DEF_DEF_  "CANoeDrift" 0;
 BA_DEF_DEF_  "CANoeStartDelay" 0;
-SIG_VALTYPE_ 0 SIG_EnginePower : 1;
 
