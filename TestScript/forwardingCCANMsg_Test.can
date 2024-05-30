@@ -14,7 +14,6 @@ variables
   
 }
 
-/*
 testcase checkCRC_Test() 
 {  
   // 동일한 값
@@ -50,39 +49,9 @@ testcase checkCRC_Test()
   testWaitForTimeout(1000);
   testValidateSignalMatch("", sysvar::Test::crcResult, 0);
 }
-*/
-
-testcase sendBrakePedalInfoCtoB_Test() 
-{  
-  message can2.CCAN_DB::MSG_BrakePedalInfo send;
-  byte data[1];
-  byte data2[1];
-  dword crc_data;
-  
-  send.SIG_BrakePedalPress = 1;
-  send.SIG_BrakePedalPos = 0;
-  
-  data[0] = send.byte(1);
-  Crc_CalculateCRC8(data, elcount (data), 0, elcount (data), 0, 1, crc_data);
-  send.SIG_Crc = crc_data;
-  output(send);
-  write("send = %d", send.SIG_Crc);
-  
-  data2[0] = send.SIG_BrakePedalPress;
-  Crc_CalculateCRC8(data2, elcount (data2), 0, elcount (data2), 0, 1, crc_data);
-  write("%d", crc_data);
-  msg_BrakePedalInfo.SIG_Crc = crc_data;
-  @sysvar::Test::crcResult = msg_BrakePedalInfo.SIG_Crc;
-  
-  testWaitForTimeout(1000);
-  write("recv = %d", msg_BrakePedalInfo.SIG_Crc);
-  testValidateSignalMatch("", sysvar::Test::crcResult, crc_data);  
-  
-}
 
 void MainTest() 
 {
   //checkCRC_Test();
   sendBrakePedalInfoCtoB_Test();
 }
-
